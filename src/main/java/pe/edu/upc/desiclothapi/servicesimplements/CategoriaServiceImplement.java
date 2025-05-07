@@ -6,6 +6,8 @@ import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.repositories.ICategoriaRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
 
+import java.util.List;
+
 @Service
 public class CategoriaServiceImplement implements ICategoriaService {
     @Autowired
@@ -21,4 +23,14 @@ public class CategoriaServiceImplement implements ICategoriaService {
     //HU-CAT-33
     @Override
     public void deleteCategoria(int id) { cR.deleteById(id); }
+    //HU-CAT-34-01
+    @Override
+    public List<Categoria> ordenarAZ() {
+        return cR.ordenarAZ();
+    }
+    //HU-CAT-34-02
+    @Override
+    public List<Categoria> ordenarZA() {
+        return cR.ordenarZA();
+    }
 }
