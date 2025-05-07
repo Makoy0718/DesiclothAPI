@@ -44,4 +44,9 @@ public class DisenoServiceImplement implements IDisenoService {
     public Diseno findById(int id) {
         return dR.findById(id).orElseThrow(() -> new NoSuchElementException("Diseño no encontrado con ID: " + id));
     }
+    //HU-DIS-55
+    @Override
+    public List<Diseno> findByGeneroId(int idGenero) {
+        return dR.buscarPorGenero(idGenero);
+    }
 }
