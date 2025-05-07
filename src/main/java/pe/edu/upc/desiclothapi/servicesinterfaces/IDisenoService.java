@@ -2,7 +2,6 @@ package pe.edu.upc.desiclothapi.servicesinterfaces;
 
 import pe.edu.upc.desiclothapi.entities.Diseno;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface IDisenoService {
@@ -15,5 +14,5 @@ public interface IDisenoService {
     public Diseno findById(int id); //HU-DIS-24
     List<Diseno> findByGeneroId(int idGenero); //HU-DIS-55
     List<Diseno> findByCategoriaId(int idCategoria); //HU-DIS-56
-
+    List<Diseno> findByGeneroNombre(String n); //HU-GEN-39
 }

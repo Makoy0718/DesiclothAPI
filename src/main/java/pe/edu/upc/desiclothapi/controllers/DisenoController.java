@@ -82,4 +82,12 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-GEN-39
+    @GetMapping("/buscarPorNombreGenero")
+    public List<DisenoDTO> buscarPorNombreGenero(@RequestParam String nombre) {
+        return dS.findByGeneroNombre(nombre).stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, DisenoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
