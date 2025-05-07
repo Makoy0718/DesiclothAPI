@@ -8,6 +8,7 @@ import pe.edu.upc.desiclothapi.servicesinterfaces.IDisenoService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class DisenoServiceImplement implements IDisenoService {
@@ -37,5 +38,10 @@ public class DisenoServiceImplement implements IDisenoService {
     @Override
     public List<Diseno> findByTipoOrigenDiseno(String tipoOrigenDiseno) {
         return dR.buscarByTipoOrigen(tipoOrigenDiseno);
+    }
+    //HU-DIS-24
+    @Override
+    public Diseno findById(int id) {
+        return dR.findById(id).orElseThrow(() -> new NoSuchElementException("Diseño no encontrado con ID: " + id));
     }
 }
