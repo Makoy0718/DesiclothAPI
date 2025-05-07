@@ -27,4 +27,7 @@ public class CategoriaController {
         Categoria c = m.map(dto, Categoria.class);
         cS.updateCategoria(c);
     }
+    //HU-CAT-33
+    @DeleteMapping("/{id}")
+    public void eliminarCategoria(@PathVariable("id") int id) { cS.deleteCategoria(id); }
 }
