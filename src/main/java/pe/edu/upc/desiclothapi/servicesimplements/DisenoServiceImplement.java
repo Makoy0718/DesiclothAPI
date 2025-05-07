@@ -49,4 +49,9 @@ public class DisenoServiceImplement implements IDisenoService {
     public List<Diseno> findByGeneroId(int idGenero) {
         return dR.buscarPorGenero(idGenero);
     }
+    //HU-DIS-56
+    @Override
+    public List<Diseno> findByCategoriaId(int idCategoria) {
+        return dR.buscarPorCategoria(idCategoria);
+    }
 }
