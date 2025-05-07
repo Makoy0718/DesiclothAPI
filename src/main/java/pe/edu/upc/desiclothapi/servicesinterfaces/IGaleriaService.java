@@ -1,0 +1,11 @@
+package pe.edu.upc.desiclothapi.servicesinterfaces;
+
+import pe.edu.upc.desiclothapi.entities.Galeria;
+
+import java.util.List;
+
+public interface IGaleriaService {
+    public List<Galeria> listGaleria(); //HU-GAL--45
+    public void insertGaleria(Galeria g); //HU-GAL--41
+    public List<Galeria> searchByNombre(String nombre);//HU-GAL--42
+}
