@@ -36,4 +36,12 @@ public class DisenoController {
     public void eliminarDiseno(@PathVariable("id") int id) {
         dS.deleteDiseno(id);
     }
+    //HU-DIS-21
+    @GetMapping("/buscarPorGeneroYCategoria")
+    public List<DisenoDTO> buscarPorGeneroYCategoria(@RequestParam int idGenero, @RequestParam int idCategoria) {
+        return dS.searchByGeneroYCategoria(idGenero, idCategoria).stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, DisenoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
