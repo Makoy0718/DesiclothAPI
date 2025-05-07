@@ -21,4 +21,9 @@ public class DisenoServiceImplement implements IDisenoService {
     //HU-DIS-28
     @Override
     public void deleteDiseno(int id) { dR.deleteById(id); }
+    //HU-DIS-21
+    @Override
+    public List<Diseno> searchByGeneroYCategoria(int idGenero, int idCategoria) {
+        return dR.buscarPorGeneroYCategoria(idGenero, idCategoria);
+    }
 }
