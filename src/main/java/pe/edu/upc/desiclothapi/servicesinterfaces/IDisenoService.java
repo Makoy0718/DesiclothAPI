@@ -13,6 +13,7 @@ public interface IDisenoService {
     List<Diseno> findByFechaOrigenDisenoReciente(); //HU-DIS-22
     List<Diseno> findByTipoOrigenDiseno(String tipoOrigenDiseno); //HU-DIS-23
     public Diseno findById(int id); //HU-DIS-24
-    List<Diseno> findByGeneroId(int idGenero);
+    List<Diseno> findByGeneroId(int idGenero); //HU-DIS-55
+    List<Diseno> findByCategoriaId(int idCategoria); //HU-DIS-56
 
 }
