@@ -7,6 +7,9 @@ import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/Categorias")
 public class CategoriaController {
@@ -30,4 +33,20 @@ public class CategoriaController {
     //HU-CAT-33
     @DeleteMapping("/{id}")
     public void eliminarCategoria(@PathVariable("id") int id) { cS.deleteCategoria(id); }
+    //HU-CAT-34-01
+    @GetMapping("/categoriasOrdenAZ")
+    public List<CategoriaDTO> categoriasOrdenAZ() {
+        return cS.ordenarAZ().stream().map(c -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(c, CategoriaDTO.class);
+        }).collect(Collectors.toList());
+    }
+    //HU-CAT-34-02
+    @GetMapping("/categoriasOrdenZA")
+    public List<CategoriaDTO> categoriasOrdenZA() {
+        return cS.ordenarZA().stream().map(c -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(c, CategoriaDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
