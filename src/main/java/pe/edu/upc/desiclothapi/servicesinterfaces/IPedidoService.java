@@ -6,7 +6,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IPedidoService {
+
     public List<Pedido> listPedido();
+    public void insertPedido(Pedido p);
+
 
     List<Pedido> buscarPorFechaPedido(LocalDate fecha);
 

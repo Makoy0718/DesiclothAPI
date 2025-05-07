@@ -18,9 +18,14 @@ public class PedidoServiceImplements implements IPedidoService {
     public List<Pedido> listPedido() { return pR.findAll();}
 
     @Override
+    public void insertPedido(Pedido p) { pR.save(p);}
+
+    @Override
     public List<Pedido> buscarPorFechaPedido(LocalDate fecha) {
         return pR.buscarPorFechaPedido(fecha);
     }
-
-
 }
+
+
+
+

@@ -7,7 +7,7 @@ public class PedidoDTO {
     private LocalDate fechaPedido;
     private Boolean estadoPedido;
     private User user;
-    ///
+
 
     public int getIdPedido() {
         return idPedido;

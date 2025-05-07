@@ -100,11 +100,11 @@ public class DisenoDTO {
         this.producto = producto;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUsuario() {
+        return user;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(User usuario) {
+        this.user = usuario;
     }
 }
