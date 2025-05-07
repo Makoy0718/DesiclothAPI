@@ -32,4 +32,8 @@ public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     //HU-DIS-26
     @Query("SELECT d.tipoOrigenDiseno, AVG(d.precioDiseno) FROM Diseno d GROUP BY d.tipoOrigenDiseno")
     List<Object[]> compararPreciosPorOrigen();
+    //HU-DIS-27
+    @Query("SELECT d.categoria.nombreCategoria, d.tipoOrigenDiseno, COUNT(d) " +
+            "FROM Diseno d GROUP BY d.categoria.nombreCategoria, d.tipoOrigenDiseno")
+    List<Object[]> contarDisenosPorCategoriaYOrigen();
 }
