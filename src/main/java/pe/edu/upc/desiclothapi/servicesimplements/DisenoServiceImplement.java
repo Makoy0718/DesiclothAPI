@@ -59,4 +59,9 @@ public class DisenoServiceImplement implements IDisenoService {
     public List<Diseno> findByGeneroNombre(String n) {
         return dR.buscarPorNombreGenero(n);
     }
+    //HU-DIS-26
+    @Override
+    public List<Object[]> comparePreciosByOrigen() {
+        return dR.compararPreciosPorOrigen();
+    }
 }

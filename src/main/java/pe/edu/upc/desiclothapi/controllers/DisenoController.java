@@ -3,6 +3,7 @@ package pe.edu.upc.desiclothapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.desiclothapi.dtos.ComparacionPreciosDisenoDTO;
 import pe.edu.upc.desiclothapi.dtos.DisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Diseno;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IDisenoService;
@@ -88,6 +89,15 @@ public class DisenoController {
         return dS.findByGeneroNombre(nombre).stream().map(w -> {
             ModelMapper m = new ModelMapper();
             return m.map(w, DisenoDTO.class);
+        }).collect(Collectors.toList());
+    }
+    //HU-DIS-XX
+    @GetMapping("/compararPreciosOrigen")
+    public List<ComparacionPreciosDisenoDTO> compararPreciosOrigen() {
+        return dS.comparePreciosByOrigen().stream().map(fila -> {
+            String origen = (String) fila[0];
+            Double promedio = (Double) fila[1];
+            return new ComparacionPreciosDisenoDTO(origen, promedio);
         }).collect(Collectors.toList());
     }
 }

@@ -29,4 +29,7 @@ public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     //HU-GEN-39
     @Query("SELECT d FROM Diseno d JOIN Genero g ON d.genero = g.idGenero WHERE g.nombreGenero = :nombreGenero")
     public List<Diseno> buscarPorNombreGenero(@Param("nombreGenero") String nombreGenero);
+    //HU-DIS-26
+    @Query("SELECT d.tipoOrigenDiseno, AVG(d.precioDiseno) FROM Diseno d GROUP BY d.tipoOrigenDiseno")
+    List<Object[]> compararPreciosPorOrigen();
 }
