@@ -6,6 +6,7 @@ import pe.edu.upc.desiclothapi.entities.Diseno;
 import pe.edu.upc.desiclothapi.repositories.IDisenoRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IDisenoService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -25,5 +26,11 @@ public class DisenoServiceImplement implements IDisenoService {
     @Override
     public List<Diseno> searchByGeneroYCategoria(int idGenero, int idCategoria) {
         return dR.buscarPorGeneroYCategoria(idGenero, idCategoria);
+    }
+    //HU-DIS-22
+    @Override
+    public List<Diseno> findByFechaOrigenDisenoReciente() {
+        LocalDate fechaLimite = LocalDate.now().minusDays(7);
+        return dR.buscarDisenosRecientes(fechaLimite);
     }
 }
