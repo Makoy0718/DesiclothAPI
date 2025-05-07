@@ -15,4 +15,5 @@ public interface IDisenoService {
     List<Diseno> findByGeneroId(int idGenero); //HU-DIS-55
     List<Diseno> findByCategoriaId(int idCategoria); //HU-DIS-56
     List<Diseno> findByGeneroNombre(String n); //HU-GEN-39
+    List<Object[]> comparePreciosByOrigen();
 }
