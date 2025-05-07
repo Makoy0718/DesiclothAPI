@@ -6,11 +6,19 @@ import pe.edu.upc.desiclothapi.entities.Diseno;
 import pe.edu.upc.desiclothapi.repositories.IDisenoRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IDisenoService;
 
+import java.util.List;
+
 @Service
 public class DisenoServiceImplement implements IDisenoService {
     @Autowired
     private IDisenoRepository dR;
-
+    //HU-DIS-20
     @Override
     public void insertDiseno(Diseno d) { dR.save(d); }
+    //HU-DIS-25
+    @Override
+    public List<Diseno> listDiseno() { return dR.findAll(); }
+    //HU-DIS-28
+    @Override
+    public void deleteDiseno(int id) { dR.deleteById(id); }
 }
