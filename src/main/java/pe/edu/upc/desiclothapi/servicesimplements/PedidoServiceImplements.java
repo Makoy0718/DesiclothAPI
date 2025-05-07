@@ -22,5 +22,10 @@ public class PedidoServiceImplements implements IPedidoService {
         return pR.buscarPorFechaPedido(fecha);
     }
 
+    @Override
+    public Boolean obtenerEstadoPorId(int idPedido){
+        return pR.obtenerEstadoPorId(idPedido);
+    }
+
 
 }
