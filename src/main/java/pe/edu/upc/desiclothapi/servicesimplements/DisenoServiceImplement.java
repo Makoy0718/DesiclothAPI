@@ -64,4 +64,9 @@ public class DisenoServiceImplement implements IDisenoService {
     public List<Object[]> comparePreciosByOrigen() {
         return dR.compararPreciosPorOrigen();
     }
+    //HU-DIS-27
+    @Override
+    public List<Object[]> countDisenosByCategoriaYOrigen() {
+        return dR.contarDisenosPorCategoriaYOrigen();
+    }
 }

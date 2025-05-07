@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.ComparacionPreciosDisenoDTO;
+import pe.edu.upc.desiclothapi.dtos.ConteoDisenoCategoriaOrigenDTO;
 import pe.edu.upc.desiclothapi.dtos.DisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Diseno;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IDisenoService;
@@ -91,13 +92,23 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
-    //HU-DIS-XX
+    //HU-DIS-26
     @GetMapping("/compararPreciosOrigen")
     public List<ComparacionPreciosDisenoDTO> compararPreciosOrigen() {
         return dS.comparePreciosByOrigen().stream().map(fila -> {
             String origen = (String) fila[0];
             Double promedio = (Double) fila[1];
             return new ComparacionPreciosDisenoDTO(origen, promedio);
+        }).collect(Collectors.toList());
+    }
+    //HU-DIS-27
+    @GetMapping("/conteoDisenosPorCategoriaYOrigen")
+    public List<ConteoDisenoCategoriaOrigenDTO> conteoDisenosPorCategoriaYOrigen() {
+        return dS.countDisenosByCategoriaYOrigen().stream().map(fila -> {
+            String categoria = (String) fila[0];
+            String origen = (String) fila[1];
+            Long cantidad = (Long) fila[2];
+            return new ConteoDisenoCategoriaOrigenDTO(categoria, origen, cantidad);
         }).collect(Collectors.toList());
     }
 }
