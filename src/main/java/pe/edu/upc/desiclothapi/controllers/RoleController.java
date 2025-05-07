@@ -28,7 +28,7 @@ public class RoleController {
     }
 
 
-    @PostMapping("/prueba")
+    @PostMapping("/crearRol")
     public void insertar(@RequestBody RoleDTO dto) {
         ModelMapper m = new ModelMapper();
         Role r = m.map(dto, Role.class);
