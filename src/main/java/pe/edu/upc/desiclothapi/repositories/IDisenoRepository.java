@@ -17,5 +17,7 @@ public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     //HU-DIS-22
     @Query("SELECT d FROM Diseno d WHERE d.fechaOrigenDiseno >= :fechaLimite")
     List<Diseno> buscarDisenosRecientes(@Param("fechaLimite") LocalDate fechaLimite);
-
+    //HU-DIS-23
+    @Query("SELECT d FROM Diseno d WHERE d.tipoOrigenDiseno = :tipo")
+    List<Diseno> buscarByTipoOrigen(@Param("tipo") String tipo);
 }

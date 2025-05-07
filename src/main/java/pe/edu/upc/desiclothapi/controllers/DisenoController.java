@@ -52,4 +52,12 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-DIS-23
+    @GetMapping("/buscarPorOrigen")
+    public List<DisenoDTO> buscarPorOrigen(@RequestParam String tipo) {
+        return dS.findByTipoOrigenDiseno(tipo).stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, DisenoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

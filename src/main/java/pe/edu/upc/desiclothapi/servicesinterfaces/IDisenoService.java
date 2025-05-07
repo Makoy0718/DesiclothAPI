@@ -11,4 +11,5 @@ public interface IDisenoService {
     public void deleteDiseno(int id); //HU-DIS-28
     public List<Diseno> searchByGeneroYCategoria(int idGenero, int idCategoria); //HU-DIS-21
     List<Diseno> findByFechaOrigenDisenoReciente(); //HU-DIS-22
+    List<Diseno> findByTipoOrigenDiseno(String tipoOrigenDiseno); //HU-DIS-23
 }

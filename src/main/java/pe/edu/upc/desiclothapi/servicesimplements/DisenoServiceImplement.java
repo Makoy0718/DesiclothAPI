@@ -33,4 +33,9 @@ public class DisenoServiceImplement implements IDisenoService {
         LocalDate fechaLimite = LocalDate.now().minusDays(7);
         return dR.buscarDisenosRecientes(fechaLimite);
     }
+    //HU-DIS-23
+    @Override
+    public List<Diseno> findByTipoOrigenDiseno(String tipoOrigenDiseno) {
+        return dR.buscarByTipoOrigen(tipoOrigenDiseno);
+    }
 }
