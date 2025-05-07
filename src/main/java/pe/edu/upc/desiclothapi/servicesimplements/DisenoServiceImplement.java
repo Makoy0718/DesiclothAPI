@@ -18,4 +18,7 @@ public class DisenoServiceImplement implements IDisenoService {
     //HU-DIS-25
     @Override
     public List<Diseno> listDiseno() { return dR.findAll(); }
+    //HU-DIS-28
+    @Override
+    public void deleteDiseno(int id) { dR.deleteById(id); }
 }
