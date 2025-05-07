@@ -74,4 +74,12 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-DIS-56
+    @GetMapping("/buscarPorCategoria")
+    public List<DisenoDTO> buscarPorCategoria(@RequestParam int idCategoria) {
+        return dS.findByCategoriaId(idCategoria).stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, DisenoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
