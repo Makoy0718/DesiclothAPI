@@ -44,4 +44,12 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-DIS-22
+    @GetMapping("/disenosRecientes")
+    public List<DisenoDTO> disenosRecientes() {
+        return dS.findByFechaOrigenDisenoReciente().stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, DisenoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
