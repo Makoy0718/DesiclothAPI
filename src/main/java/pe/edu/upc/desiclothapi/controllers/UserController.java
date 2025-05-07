@@ -18,7 +18,7 @@ public class UserController {
     private IUserService uS;
 
 
-    @GetMapping("/lista")
+    @GetMapping("/verUsusarios")
     public List<UserDTO> listar() {
         return uS.list().stream().map(w -> {
             ModelMapper m = new ModelMapper();
