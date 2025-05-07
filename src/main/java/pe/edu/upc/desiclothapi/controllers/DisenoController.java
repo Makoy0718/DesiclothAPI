@@ -31,4 +31,9 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-DIS-28
+    @DeleteMapping("/{id}")
+    public void eliminarDiseno(@PathVariable("id") int id) {
+        dS.deleteDiseno(id);
+    }
 }
