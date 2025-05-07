@@ -59,7 +59,7 @@ public class Diseno {
         this.categoria = categoria;
         this.genero = genero;
         this.producto = producto;
-        this.usuario = usuario;
+        this.user = user;
     }
 
     public int getIdDiseno() {
@@ -142,11 +142,11 @@ public class Diseno {
         this.producto = producto;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUsuario() {
+        return user;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(User usuario) {
+        this.user = usuario;
     }
 }
