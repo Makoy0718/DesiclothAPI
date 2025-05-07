@@ -7,6 +7,7 @@ public class PedidoDTO {
     private LocalDate fechaPedido;
     private Boolean estadoPedido;
     private User user;
+    ///
 
     public int getIdPedido() {
         return idPedido;
@@ -27,6 +28,7 @@ public class PedidoDTO {
     public Boolean getEstadoPedido() {
         return estadoPedido;
     }
+
 
     public void setEstadoPedido(Boolean estadoPedido) {
         this.estadoPedido = estadoPedido;
