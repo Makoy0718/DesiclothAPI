@@ -12,4 +12,5 @@ public interface IDisenoService {
     public List<Diseno> searchByGeneroYCategoria(int idGenero, int idCategoria); //HU-DIS-21
     List<Diseno> findByFechaOrigenDisenoReciente(); //HU-DIS-22
     List<Diseno> findByTipoOrigenDiseno(String tipoOrigenDiseno); //HU-DIS-23
+    public Diseno findById(int id); //HU-DIS-24
 }

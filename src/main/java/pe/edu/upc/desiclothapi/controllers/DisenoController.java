@@ -60,4 +60,10 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-DIS-24
+    @GetMapping("/detalleDiseno")
+    public DisenoDTO detalleDiseno(@RequestParam int id) {
+        ModelMapper m = new ModelMapper();
+        return m.map(dS.findById(id), DisenoDTO.class);
+    }
 }
