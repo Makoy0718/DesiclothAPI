@@ -3,7 +3,7 @@ package pe.edu.upc.desiclothapi.dtos;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.entities.Genero;
 import pe.edu.upc.desiclothapi.entities.Producto;
-import pe.edu.upc.desiclothapi.entities.Usuario;
+import pe.edu.upc.desiclothapi.entities.User;
 
 import java.time.LocalDate;
 

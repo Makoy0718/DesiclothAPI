@@ -3,10 +3,7 @@ package pe.edu.upc.desiclothapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.PedidoDTO;
 import pe.edu.upc.desiclothapi.entities.Pedido;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IPedidoService;
@@ -36,4 +33,11 @@ public class PedidoController {
                 return m.map(p, PedidoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/estadoPedido/{id}")
+    public Boolean obtenerEstado(@PathVariable("id")int idPedido) {
+        return pS.obtenerEstadoPorId(idPedido);
+    }
+
+
 }

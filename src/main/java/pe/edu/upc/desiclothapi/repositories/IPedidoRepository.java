@@ -12,4 +12,8 @@ public interface IPedidoRepository extends JpaRepository<Pedido, Integer> {
     @Query("select p from Pedido p where p.fechaPedido = :fecha")
     List<Pedido> buscarPorFechaPedido(@Param("fecha") LocalDate fecha);
 
+    //HU-PED-13
+    @Query("SELECT p.estadoPedido FROM Pedido p WHERE p.idPedido = :idPedido")
+    Boolean obtenerEstadoPorId(@Param("idPedido") int idPedido);
+
 }

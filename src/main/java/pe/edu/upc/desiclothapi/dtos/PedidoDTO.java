@@ -1,5 +1,5 @@
 package pe.edu.upc.desiclothapi.dtos;
-import pe.edu.upc.desiclothapi.entities.Usuario;
+import pe.edu.upc.desiclothapi.entities.User;
 import java.time.LocalDate;
 
 public class PedidoDTO {

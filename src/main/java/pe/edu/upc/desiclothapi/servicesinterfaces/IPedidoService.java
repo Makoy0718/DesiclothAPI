@@ -10,4 +10,6 @@ public interface IPedidoService {
 
     List<Pedido> buscarPorFechaPedido(LocalDate fecha);
 
+    public Boolean obtenerEstadoPorId(int idPedido);
+
 }
