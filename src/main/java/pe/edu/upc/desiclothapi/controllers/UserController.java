@@ -3,6 +3,7 @@ package pe.edu.upc.desiclothapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.desiclothapi.dtos.ModificarRolDTO;
 import pe.edu.upc.desiclothapi.dtos.UserDTO;
 import pe.edu.upc.desiclothapi.entities.User;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IUserService;
@@ -35,12 +36,22 @@ public class UserController {
     }
 
 
+
     @PutMapping
     public void modificar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
         User u = m.map(dto, User.class);
         uS.update(u);
     }
+
+    @PutMapping("/modificarRol")
+    public void modificar(@RequestBody ModificarRolDTO dto) {
+        ModelMapper m = new ModelMapper();
+        User u = m.map(dto, User.class);
+        uS.update(u);
+    }
+
+
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
