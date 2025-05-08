@@ -41,10 +41,19 @@ public class GaleriaController {
             return m.map(y, GaleriaDTO.class);
         }).collect(Collectors.toList());
     }
-
+    //HU-GAL--43
     @PutMapping("/cambiarVisibilidadGaleria/{id}")
     public GaleriaDTO cambiarVisibilidadGaleria(@PathVariable int id, @RequestParam boolean visible) {
         ModelMapper m = new ModelMapper();
         return m.map(gS.cambiarVisibilidadGaleria(id, visible), GaleriaDTO.class);
     }
+
+    //HU-GAL--44
+    @PostMapping("/{idGaleria}/valorar")
+    public String valorarGaleria(@PathVariable int idGaleria, @RequestParam int rating) {
+        gS.valorarGaleria(idGaleria, rating);
+        return "Galería valorada con éxito.";
+    }
+
+
 }

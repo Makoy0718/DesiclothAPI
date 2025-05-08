@@ -9,4 +9,6 @@ public interface IGaleriaService {
     public void insertGaleria(Galeria g); //HU-GAL--41
     public List<Galeria> searchByNombre(String nombre);//HU-GAL--42
     public Galeria cambiarVisibilidadGaleria(int idGaleria, boolean visibilidad);//HU-GAL--43
+    public void valorarGaleria(int idGaleria, int rating);//HU-GAL--44
+
 }

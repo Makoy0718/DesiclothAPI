@@ -40,4 +40,13 @@ public class GaleriaServiceImplement implements IGaleriaService {
         return gR.save(galeria);
 
     }
+    //HU-GAL--44
+    @Override
+    public void valorarGaleria(int idGaleria, int rating) {
+        Galeria galeria = gR.findById(idGaleria)
+                .orElseThrow(() -> new RuntimeException("Galería no encontrada"));
+        galeria.setRatingGaleria(rating);
+        gR.save(galeria);
+
+    }
 }
