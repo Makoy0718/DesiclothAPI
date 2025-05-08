@@ -44,4 +44,9 @@ public class CategoriaServiceImplement implements ICategoriaService {
     public List<Categoria> searchCategoria(String nombreC) {
         return cR.buscarCategoria(nombreC);
     }
+
+    @Override
+    public List<String[]> contarDisenosPorCategoria() {
+        return cR.contarDisenosPorCategoria();
+    }
 }

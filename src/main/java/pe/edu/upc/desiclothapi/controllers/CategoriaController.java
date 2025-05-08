@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
+import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,5 +66,19 @@ public class CategoriaController {
             ModelMapper m = new ModelMapper();
             return m.map(y,CategoriaDTO.class);
         }).collect(Collectors.toList());
+    }
+    //HU-CAT-54
+    @GetMapping("/conteoDisenos")
+    public List<ConteoCategoriaPorDisenoDTO> obtenerConteoDisenos() {
+        List<ConteoCategoriaPorDisenoDTO> dtoLista = new ArrayList<>();
+        List<String[]> resultados = cS.contarDisenosPorCategoria();
+
+        for(String[] fila : resultados) {
+            ConteoCategoriaPorDisenoDTO dto = new ConteoCategoriaPorDisenoDTO();
+            dto.setNombreCategoria(fila[0]);
+            dto.setCantidadDisenos(Integer.parseInt(fila[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }
