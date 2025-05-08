@@ -26,7 +26,7 @@ public class GeneroController {
     }
 
 
-    @PostMapping("/prueba")
+    @PostMapping("/creacion")
     public void insertar(@RequestBody GeneroDTO dto) {
         ModelMapper m = new ModelMapper();
         Genero g = m.map(dto, Genero.class);
@@ -34,7 +34,7 @@ public class GeneroController {
     }
 
 
-    @PutMapping
+    @PutMapping("/edicion")
     public void modificar(@RequestBody GeneroDTO dto) {
         ModelMapper m = new ModelMapper();
         Genero g = m.map(dto, Genero.class);
