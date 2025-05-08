@@ -16,6 +16,14 @@ public class CategoriaController {
     @Autowired
     private ICategoriaService cS;
 
+    //HU-CAT-29
+    @GetMapping("/listaCategoria")
+    public List<Categoria> listaCategoria() {
+        return cS.listCategoria().stream().map(w->{
+            ModelMapper m = new ModelMapper();
+            return m.map(w, Categoria.class);
+        }).collect(Collectors.toList());
+    }
     //HU-CAT-31
     @PostMapping("/insertarCategoria")
     public void insertarCategoria(@RequestBody CategoriaDTO dto) {
