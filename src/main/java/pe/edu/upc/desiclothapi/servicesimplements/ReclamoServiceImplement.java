@@ -6,6 +6,8 @@ import pe.edu.upc.desiclothapi.entities.Reclamo;
 import pe.edu.upc.desiclothapi.repositories.IReclamoRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IReclamoService;
 
+import java.util.List;
+
 @Service
 public class ReclamoServiceImplement implements IReclamoService {
 
@@ -16,5 +18,11 @@ public class ReclamoServiceImplement implements IReclamoService {
     @Override
     public void insertReclamos(Reclamo r) {
         rR.save(r);
+    }
+
+    //HU-REC-05
+    @Override
+    public List<Reclamo> buscarPorTitulo(String titulo) {
+        return rR.buscarPorTitulo(titulo);
     }
 }
