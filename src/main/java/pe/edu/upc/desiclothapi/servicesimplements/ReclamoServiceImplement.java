@@ -40,4 +40,16 @@ public class ReclamoServiceImplement implements IReclamoService {
         // Solo devolvemos el estado del reclamo
         return reclamo.getEstado();
     }
+
+    //HU-REC-09
+    @Override
+    public Reclamo actualizarEstadoReclamo(int idReclamo, String estado) {
+        // Buscamos el reclamo por su ID
+        Reclamo reclamo = rR.findById(idReclamo)
+                .orElseThrow(() -> new RuntimeException("Reclamo no encontrado"));
+        // Actualizamos el estado
+        reclamo.setEstado(estado);
+        // Guardamos el reclamo actualizado
+        return rR.save(reclamo);
+    }
 }
