@@ -12,4 +12,7 @@ public interface IProductoRepository extends JpaRepository<Producto,Integer> {
     public List<Producto> buscarTipoProducto(@Param("tipoP") String tipoP);
     @Query("select r FROM Producto r WHERE r.tallaProducto like %:tallaP%")
     public List<Producto>  buscarTallaProducto(@Param("tallaP") String tallaP);
+    @Query("SELECT d.producto.tallaProducto, AVG(d.precioDiseno) " +
+            "FROM Diseno d GROUP BY d.producto.tallaProducto")
+    List<Object[]> promedioPrecioDiseñoPorTalla();
 }

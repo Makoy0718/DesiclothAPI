@@ -3,6 +3,7 @@ package pe.edu.upc.desiclothapi.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.desiclothapi.entities.Producto;
+import pe.edu.upc.desiclothapi.repositories.IDisenoRepository;
 import pe.edu.upc.desiclothapi.repositories.IProductoRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IProductoService;
 
@@ -27,4 +28,9 @@ public class ProductoServiceImplement implements IProductoService {
 
     @Override
     public List<Producto> searchbytallaProducto(String tallaProducto) {return proR.buscarTallaProducto(tallaProducto);}
+
+    @Override
+    public List<Object[]> promedioPrecioDiseñoPorTalla() {
+        return proR.promedioPrecioDiseñoPorTalla();
+    }
 }

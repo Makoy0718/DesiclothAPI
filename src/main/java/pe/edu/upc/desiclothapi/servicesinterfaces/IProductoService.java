@@ -10,6 +10,7 @@ public interface IProductoService {
     public void deleteProducto(int id);
     public List<Producto> searchbytipoProducto(String tipoProducto);
     public List<Producto> searchbytallaProducto(String tipoProducto);
+    List<Object[]> promedioPrecioDiseñoPorTalla();
 
 
 }
