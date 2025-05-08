@@ -1,9 +1,12 @@
 package pe.edu.upc.desiclothapi.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.desiclothapi.entities.Pago;
 import pe.edu.upc.desiclothapi.repositories.IPagoRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IPagoService;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,6 +36,17 @@ public class PagoServiceImplement implements IPagoService {
     @Override
     public List<Pago> buscarPorMetodoPago(String metodo){
         return paR.buscarPorMetodoPago(metodo);
+    }
+
+    //HU-PAG-56
+    @Override
+    public List<Pago> buscarPorFechaPago(LocalDate fecha) {
+        return paR.buscarPorFecha(fecha);
+    }
+    //update
+    @Override
+    public void updatePago(Pago pa) {
+        paR.save(pa);
     }
 
 }
