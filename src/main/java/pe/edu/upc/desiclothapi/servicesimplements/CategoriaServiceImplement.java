@@ -12,6 +12,12 @@ import java.util.List;
 public class CategoriaServiceImplement implements ICategoriaService {
     @Autowired
     private ICategoriaRepository cR;
+
+    //HU-CAT-29
+    @Override
+    public List<Categoria> listCategoria() {
+        return cR.findAll();
+    }
     //HU-CAT-31
     @Override
     public void insertCategoria(Categoria c) {
