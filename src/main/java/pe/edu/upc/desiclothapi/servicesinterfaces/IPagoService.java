@@ -9,6 +9,8 @@ public interface IPagoService {
     public void insertPago(Pago pa);
     //HU-PAG-15
     public List<Pago> searchByUsuario (int idUser);
+    //HU-PAG-18
+    public void deletePago (int id);
 
 
 

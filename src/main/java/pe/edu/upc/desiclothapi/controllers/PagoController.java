@@ -41,6 +41,10 @@ public class PagoController {
             return m.map(w, PagoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    //HU-PAG-18
+    @DeleteMapping("/{id}")
+    public void eliminarPago(@PathVariable int id) {paS.deletePago(id);}
 }
 
 
