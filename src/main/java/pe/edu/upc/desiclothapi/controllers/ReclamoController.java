@@ -51,4 +51,14 @@ public class ReclamoController {
         return new ReclamoDTO(idReclamo, "Consulta del estado", estado, estado, null);
     }
 
+    //HU-REC-09
+    @PutMapping("/{idReclamo}/estado")
+    public ReclamoDTO actualizarEstadoReclamo(@PathVariable int idReclamo, @RequestParam String estado) {
+        // Actualizamos el estado del reclamo
+        Reclamo reclamoActualizado = rS.actualizarEstadoReclamo(idReclamo, estado);
+        // Devolvemos el DTO con los datos actualizados
+        return new ReclamoDTO(reclamoActualizado.getIdReclamo(), reclamoActualizado.getTitulo(),
+                reclamoActualizado.getDescripcion(), reclamoActualizado.getEstado(),reclamoActualizado.getUser());
+    }
+
 }
