@@ -18,6 +18,11 @@ public class PagoServiceImplement implements IPagoService {
     @Override
     public void insertPago (Pago pa) { paR.save(pa); }
 
+    //HU-PAG-18
+    @Override
+    public void deletePago(int id) { paR.deleteById(id); }
+
+
     //HU-PAG-15
     @Override
     public List<Pago>searchByUsuario(int idUser){
