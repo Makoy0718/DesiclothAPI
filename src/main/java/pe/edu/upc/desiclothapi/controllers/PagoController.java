@@ -26,12 +26,12 @@ public class PagoController {
             return m.map(w, PagoDTO.class);
         }).collect(Collectors.toList());
     }
-    //Insertar
+    //Insertar-HU-PAG-17
     @PostMapping("/insertarPago")
     public void insertPago(@RequestBody PagoDTO p) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(p, Pago.class);
-        paS.insertPago(pago);
+        paS.insertPago(pago) ;
     }
     //HU-PAG-15
     @GetMapping("/buscarPorUsuario")

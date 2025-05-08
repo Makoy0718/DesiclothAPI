@@ -14,6 +14,7 @@ public class PagoServiceImplement implements IPagoService {
     @Override
     public List<Pago> listPago() {return paR.findAll();}
 
+    //HU-PAG-17
     @Override
     public void insertPago (Pago pa) { paR.save(pa); }
 
