@@ -13,6 +13,10 @@ public interface IPagoService {
     //HU-PAG-18
     public void deletePago (int id);
 
+    //HU-PAG-55
+    List<Pago> buscarPorMetodoPago(String metodo);
+
+
 
 
 }
