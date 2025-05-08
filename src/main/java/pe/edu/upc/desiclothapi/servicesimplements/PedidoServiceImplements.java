@@ -14,7 +14,7 @@ public class PedidoServiceImplements implements IPedidoService {
     @Autowired
     private IPedidoRepository pR;
 
-    //HU-PED-16
+    //HU-PED-16/HU-PED-16-Escn01
     @Override
     public List<Pedido> listPedido() { return pR.findAll();}
 
@@ -27,6 +27,8 @@ public class PedidoServiceImplements implements IPedidoService {
     public Boolean obtenerEstadoPorId(int idPedido){
         return pR.obtenerEstadoPorId(idPedido);
     }
+
+
 
 
 }

@@ -14,4 +14,6 @@ public interface IPedidoService {
 
     public Boolean obtenerEstadoPorId(int idPedido);
 
+
+
 }
