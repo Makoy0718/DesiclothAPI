@@ -22,6 +22,10 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     @Query("SELECT p FROM Pago p WHERE p.fechaPago = :fecha")
     List<Pago> buscarPorFecha(@Param("fecha") LocalDate fecha);
 
+    //HU-PAG-57
+    @Query("SELECT p FROM Pago p WHERE p.fechaPago = :fecha AND p.pedido.user.idUser = :idUser")
+    List<Pago> buscarPagosPorUsuarioYFecha(@Param("idUser") int idUser, @Param("fecha") LocalDate fecha);
+
 
 
 
