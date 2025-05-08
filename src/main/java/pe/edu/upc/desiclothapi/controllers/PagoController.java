@@ -18,7 +18,7 @@ public class PagoController {
     @Autowired
     private IPagoService paS;
 
-    //Listar
+    //HU-PAG-54
     @GetMapping("/listaPago")
     public List<PagoDTO> listarPago() {
         return paS.listPago().stream().map(w -> {

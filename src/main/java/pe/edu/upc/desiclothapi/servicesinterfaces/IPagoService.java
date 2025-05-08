@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface IPagoService {
 
+    //HU-PAG-54
     public List<Pago> listPago();
     //HU-PAG-17
     public void insertPago(Pago pa);
