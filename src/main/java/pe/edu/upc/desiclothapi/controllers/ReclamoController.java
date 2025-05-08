@@ -33,4 +33,13 @@ public class ReclamoController {
         }).collect(Collectors.toList());
     }
 
+    //HU-REC-07
+    @GetMapping("/{idReclamo}/estado")
+    public ReclamoDTO consultarEstadoReclamo(@PathVariable int idReclamo) {
+        // Obtener el estado del reclamo desde el servicio
+        String estado = rS.consultarEstadoReclamo(idReclamo);
+        // Creamos el DTO con la información del reclamo, incluyendo el estado
+        return new ReclamoDTO(idReclamo, "Consulta del estado", estado, estado, null);
+    }
+
 }

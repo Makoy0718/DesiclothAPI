@@ -25,4 +25,13 @@ public class ReclamoServiceImplement implements IReclamoService {
     public List<Reclamo> buscarPorTitulo(String titulo) {
         return rR.buscarPorTitulo(titulo);
     }
+
+    //HU-REC-07
+    @Override
+    public String consultarEstadoReclamo(int idReclamo) {
+        Reclamo reclamo = rR.findById(idReclamo)
+                .orElseThrow(() -> new RuntimeException("Reclamo no encontrado"));
+        // Solo devolvemos el estado del reclamo
+        return reclamo.getEstado();
+    }
 }
