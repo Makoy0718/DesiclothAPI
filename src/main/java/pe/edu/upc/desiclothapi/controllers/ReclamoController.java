@@ -16,6 +16,15 @@ public class ReclamoController {
     @Autowired
     private IReclamoService rS;
 
+    //HU-REC-08
+    @GetMapping("/listarReclamos")
+    public List<ReclamoDTO> listarReclamos() {
+        return  rS.listReclamos().stream().map(w->{
+            ModelMapper m = new ModelMapper();
+            return m.map(w, ReclamoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
     //HU-REC-05
     @PostMapping("/insertarReclamos")
     public void insertarReclamos(@RequestBody ReclamoDTO dto) {

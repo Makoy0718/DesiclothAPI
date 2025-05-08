@@ -14,6 +14,12 @@ public class ReclamoServiceImplement implements IReclamoService {
     @Autowired
     private IReclamoRepository rR;
 
+    //HU-REC-08
+    @Override
+    public List<Reclamo> listReclamos() {
+        return rR.findAll();
+    }
+
     //HU-REC-05
     @Override
     public void insertReclamos(Reclamo r) {
