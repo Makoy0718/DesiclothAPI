@@ -1,4 +1,5 @@
 package pe.edu.upc.desiclothapi.servicesinterfaces;
+import pe.edu.upc.desiclothapi.dtos.UsuarioMontoDTO;
 import pe.edu.upc.desiclothapi.entities.Pago;
 
 import java.time.LocalDate;
@@ -22,6 +23,9 @@ public interface IPagoService {
     List<Pago> buscarPorFechaPago(LocalDate fecha);
     //HU-PAG-57
     public List<Pago> buscarPagosPorUsuarioYFecha (int idUser, LocalDate fecha);
+
+    //HU-PAG-58
+    List<Object[]> obtenerTotalPagosPorUsuario ();
 
 
 

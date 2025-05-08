@@ -2,11 +2,13 @@ package pe.edu.upc.desiclothapi.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.desiclothapi.dtos.UsuarioMontoDTO;
 import pe.edu.upc.desiclothapi.entities.Pago;
 import pe.edu.upc.desiclothapi.repositories.IPagoRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IPagoService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -54,6 +56,9 @@ public class PagoServiceImplement implements IPagoService {
     public List<Pago> buscarPagosPorUsuarioYFecha ( int idUser, LocalDate fecha) {
         return paR.buscarPagosPorUsuarioYFecha(idUser, fecha);
     }
-
-
+    //HU-PAG-58
+    @Override
+    public List<Object[]> obtenerTotalPagosPorUsuario(){
+        return paR.obtenerTotalPagoPorUsuario();
+    }
 }
