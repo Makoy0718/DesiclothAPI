@@ -1,9 +1,5 @@
 package pe.edu.upc.desiclothapi.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import pe.edu.upc.desiclothapi.entities.GaleriaDiseno;
 import pe.edu.upc.desiclothapi.entities.User;
 

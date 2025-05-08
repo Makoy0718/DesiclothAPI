@@ -31,4 +31,13 @@ public class GaleriaServiceImplement implements IGaleriaService {
     public List<Galeria> searchByNombre(String nombre) {
         return gR.buscarPorNombre(nombre);
     }
+
+    @Override
+    public Galeria cambiarVisibilidadGaleria(int idGaleria, boolean visibilidad) {
+        Galeria galeria = gR.findById(idGaleria)
+                .orElseThrow(() -> new RuntimeException("Galería no encontrada"));
+        galeria.setVisibilidadGaleria(visibilidad);
+        return gR.save(galeria);
+
+    }
 }

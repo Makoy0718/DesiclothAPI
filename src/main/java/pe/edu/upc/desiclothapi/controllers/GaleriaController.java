@@ -19,7 +19,7 @@ public class GaleriaController {
     //HU-GAL--45
     @GetMapping("/listarGaleria")
     public List<GaleriaDTO> ListarGalerias() {
-        return gS.listGaleria().stream().map(g->{
+        return gS.listGaleria().stream().map(g -> {
             ModelMapper m = new ModelMapper();
             return m.map(g, GaleriaDTO.class);
         }).collect(Collectors.toList());
@@ -42,4 +42,9 @@ public class GaleriaController {
         }).collect(Collectors.toList());
     }
 
+    @PutMapping("/cambiarVisibilidadGaleria/{id}")
+    public GaleriaDTO cambiarVisibilidadGaleria(@PathVariable int id, @RequestParam boolean visible) {
+        ModelMapper m = new ModelMapper();
+        return m.map(gS.cambiarVisibilidadGaleria(id, visible), GaleriaDTO.class);
+    }
 }
