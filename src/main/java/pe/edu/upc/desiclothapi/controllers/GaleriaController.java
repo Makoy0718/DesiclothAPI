@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.GaleriaDTO;
 import pe.edu.upc.desiclothapi.dtos.PromedioRatingDTO;
+import pe.edu.upc.desiclothapi.dtos.TotalGaleriasConIADTO;
 import pe.edu.upc.desiclothapi.entities.Galeria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IGaleriaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,4 +70,18 @@ public class GaleriaController {
         // Si hay valoraciones, se devuelve el promedio con el mensaje adecuado
         return new PromedioRatingDTO(promedio, String.format("El rating promedio es: %.2f", promedio));
     }
+
+    //HU-GAL-54
+    @GetMapping("/ia")
+    public List<TotalGaleriasConIADTO> obtenerGaleriasConIA() {
+        List<TotalGaleriasConIADTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista=gS.getTotalGaleriasConIA();
+        for(String[] columna:filaLista) {
+            TotalGaleriasConIADTO dto = new TotalGaleriasConIADTO();
+            dto.setTotalGalerias(columna[0]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
 }

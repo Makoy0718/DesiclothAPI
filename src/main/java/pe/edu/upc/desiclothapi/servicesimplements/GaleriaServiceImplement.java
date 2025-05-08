@@ -55,4 +55,9 @@ public class GaleriaServiceImplement implements IGaleriaService {
         // Obtiene el promedio de rating directamente en el servicio
         return gR.findAverageRatingByGaleriaId(idGaleria);
     }
+
+    @Override
+    public List<String[]> getTotalGaleriasConIA() {
+        return gR.getTotalGaleriasConIA();
+    }
 }

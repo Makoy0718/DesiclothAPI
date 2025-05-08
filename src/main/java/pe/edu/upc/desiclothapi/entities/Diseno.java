@@ -48,7 +48,7 @@ public class Diseno {
     public Diseno() {
     }
 
-    public Diseno(int idDiseno, String imagenDiseno, int precioDiseno, LocalDate fechaOrigenDiseno, String tipoOrigenDiseno, String promtDiseno, String respuestaTextoDiseno, Categoria categoria, Genero genero, Producto producto, Usuario usuario) {
+    public Diseno(int idDiseno, String imagenDiseno, int precioDiseno, LocalDate fechaOrigenDiseno, String tipoOrigenDiseno, String promtDiseno, String respuestaTextoDiseno, Categoria categoria, Genero genero, Producto producto, User user) {
         this.idDiseno = idDiseno;
         this.imagenDiseno = imagenDiseno;
         this.precioDiseno = precioDiseno;
@@ -142,11 +142,11 @@ public class Diseno {
         this.producto = producto;
     }
 
-    public User getUsuario() {
+    public User getUser() {
         return user;
     }
 
-    public void setUsuario(User usuario) {
-        this.user = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
