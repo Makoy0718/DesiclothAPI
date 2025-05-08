@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.GaleriaDTO;
+import pe.edu.upc.desiclothapi.dtos.PromedioRatingDTO;
 import pe.edu.upc.desiclothapi.entities.Galeria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IGaleriaService;
 
@@ -55,5 +56,16 @@ public class GaleriaController {
         return "Galería valorada con éxito.";
     }
 
-
+    //HU-GAL--47
+    @GetMapping("/{idGaleria}/rating-promedio")
+    public PromedioRatingDTO obtenerRatingPromedio(@PathVariable int idGaleria) {
+        // Obtener el promedio desde el servicio
+        Double promedio = gS.obtenerPromedioRatingGaleria(idGaleria);
+        // Si no hay valoraciones, se devuelve "Sin calificaciones"
+        if (promedio == null) {
+            return new PromedioRatingDTO(0.0, "Sin calificaciones");
+        }
+        // Si hay valoraciones, se devuelve el promedio con el mensaje adecuado
+        return new PromedioRatingDTO(promedio, String.format("El rating promedio es: %.2f", promedio));
+    }
 }

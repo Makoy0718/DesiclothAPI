@@ -49,4 +49,10 @@ public class GaleriaServiceImplement implements IGaleriaService {
         gR.save(galeria);
 
     }
+    //HU-GAL--47
+    @Override
+    public Double obtenerPromedioRatingGaleria(int idGaleria) {
+        // Obtiene el promedio de rating directamente en el servicio
+        return gR.findAverageRatingByGaleriaId(idGaleria);
+    }
 }

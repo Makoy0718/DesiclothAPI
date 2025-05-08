@@ -14,4 +14,8 @@ public interface IGaleriaRepository extends JpaRepository<Galeria, Integer> {
     //HU-GAL--42
     @Query("select g from Galeria g where g.nombreGaleria like %:nombre%")
     List<Galeria> buscarPorNombre(@Param("nombre") String nombre);
+
+    //HU-GAL--47
+    @Query("SELECT AVG(g.ratingGaleria) FROM Galeria g WHERE g.idGaleria = :idGaleria")
+    Double findAverageRatingByGaleriaId(@Param("idGaleria") int idGaleria);
 }
