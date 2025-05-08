@@ -20,6 +20,8 @@ public interface IPagoService {
     List<Pago> buscarPorMetodoPago(String metodo);
     //HU-PAG-56
     List<Pago> buscarPorFechaPago(LocalDate fecha);
+    //HU-PAG-57
+    public List<Pago> buscarPagosPorUsuarioYFecha (int idUser, LocalDate fecha);
 
 
 

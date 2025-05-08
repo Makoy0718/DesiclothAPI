@@ -49,4 +49,11 @@ public class PagoServiceImplement implements IPagoService {
         paR.save(pa);
     }
 
+    //HU-PAG-57
+    @Override
+    public List<Pago> buscarPagosPorUsuarioYFecha ( int idUser, LocalDate fecha) {
+        return paR.buscarPagosPorUsuarioYFecha(idUser, fecha);
+    }
+
+
 }

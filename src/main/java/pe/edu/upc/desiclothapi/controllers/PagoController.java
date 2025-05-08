@@ -73,7 +73,14 @@ public class PagoController {
             return m.map(p, PagoDTO.class);
         }).collect(Collectors.toList());
     }
-
+    //HU-PAG-57
+    @GetMapping("/buscarPorUsuarioYFecha")
+    public List<PagoDTO> buscarPorUserYFecha(@RequestParam int idUser, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+        return paS.buscarPagosPorUsuarioYFecha(idUser , fecha).stream().map( p -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(p, PagoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
 
 
