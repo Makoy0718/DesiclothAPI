@@ -3,12 +3,15 @@ package pe.edu.upc.desiclothapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.desiclothapi.dtos.GeneroDTO;
 import pe.edu.upc.desiclothapi.dtos.PagoDTO;
 import pe.edu.upc.desiclothapi.entities.Pago;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IPagoService;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +36,14 @@ public class PagoController {
         Pago pago = m.map(p, Pago.class);
         paS.insertPago(pago) ;
     }
+
+    //ActualizarPago
+    @PutMapping("/actualizarPago")
+    public void actualizarPago(@RequestBody PagoDTO p) {
+        ModelMapper m = new ModelMapper();
+        Pago pa = m.map(p, Pago.class);
+        paS.updatePago(pa);
+    }
     //HU-PAG-15
     @GetMapping("/buscarPorUsuario")
     public List<PagoDTO> buscarPorUsuario(@RequestParam int idUsuario) {
@@ -53,8 +64,15 @@ public class PagoController {
             return m.map(p, PagoDTO.class);
         }).collect(Collectors.toList());
     }
-
-
+    //HU-PAG-56
+    @GetMapping("/buscarPorFecha")
+    public List<PagoDTO> buscarPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha)
+    {
+        return paS.buscarPorFechaPago(fecha).stream().map( p-> {
+            ModelMapper m = new ModelMapper();
+            return m.map(p, PagoDTO.class);
+        }).collect(Collectors.toList());
+    }
 
 }
 
