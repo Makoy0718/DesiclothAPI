@@ -31,7 +31,7 @@ public class PagoController {
     public void insertPago(@RequestBody PagoDTO p) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(p, Pago.class);
-        paS.insertPago(pago);
+        paS.insertPago(pago) ;
     }
     //HU-PAG-15
     @GetMapping("/buscarPorUsuario")
