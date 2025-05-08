@@ -3,6 +3,7 @@ package pe.edu.upc.desiclothapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.desiclothapi.dtos.CountReclamoPorUsuarioDTO;
 import pe.edu.upc.desiclothapi.dtos.ReclamoDTO;
 import pe.edu.upc.desiclothapi.entities.Reclamo;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IReclamoService;
@@ -61,4 +62,14 @@ public class ReclamoController {
                 reclamoActualizado.getDescripcion(), reclamoActualizado.getEstado(),reclamoActualizado.getUser());
     }
 
+    //HU-REC-10
+    @GetMapping("/reclamos-contados")
+    public List<CountReclamoPorUsuarioDTO> consultarReclamosContados() {
+        return rS.CountReclamosContadosPorEstadoYUsuario().stream().map(fila->{
+            String estado = (String) fila[0];
+            String usuario = (String) fila[1];
+            Long totalReclamos = (Long) fila[2];
+            return new CountReclamoPorUsuarioDTO(estado, usuario, totalReclamos);
+        }).collect(Collectors.toList());
+    }
 }

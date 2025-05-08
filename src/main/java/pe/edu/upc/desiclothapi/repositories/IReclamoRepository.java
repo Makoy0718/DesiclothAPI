@@ -15,4 +15,11 @@ public interface IReclamoRepository extends JpaRepository<Reclamo, Integer> {
     //HU-REC-06
     @Query("select r from Reclamo r where lower(r.titulo) like lower(concat('%', :titulo, '%'))")
     List<Reclamo> buscarPorTitulo(@Param("titulo") String titulo);
+
+
+    //HU-REC-10
+    @Query("SELECT r.user.idUser AS userId, r.user.username AS username, r.user.correoUser AS correoUser, COUNT(r) AS totalReclamos\n" +
+            "FROM Reclamo r\n" +
+            "GROUP BY r.user.idUser")
+    List<Object[]> findReclamosCountByEstadoAndUser();
 }

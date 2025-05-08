@@ -52,4 +52,10 @@ public class ReclamoServiceImplement implements IReclamoService {
         // Guardamos el reclamo actualizado
         return rR.save(reclamo);
     }
+
+    //HU-REC-10
+    @Override
+    public List<Object[]> CountReclamosContadosPorEstadoYUsuario() {
+        return rR.findReclamosCountByEstadoAndUser();
+    }
 }
