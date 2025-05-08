@@ -23,11 +23,16 @@ public class PagoServiceImplement implements IPagoService {
     @Override
     public void deletePago(int id) { paR.deleteById(id); }
 
-
     //HU-PAG-15
     @Override
     public List<Pago>searchByUsuario(int idUser){
         return paR.buscarPagosPorUsuario(idUser);
+    }
+
+    //HU-PAG-55
+    @Override
+    public List<Pago> buscarPorMetodoPago(String metodo){
+        return paR.buscarPorMetodoPago(metodo);
     }
 
 }

@@ -13,6 +13,10 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     @Query("SELECT p FROM Pago p WHERE p.pedido.user.idUser  = :idUser")
     List<Pago> buscarPagosPorUsuario(@Param("idUsuario") int idUser);
 
+    //HU-PAG-55
+    @Query("SELECT p FROM Pago p WHERE p.metodoPago = :metodo")
+    List<Pago> buscarPorMetodoPago(@Param("metodo") String metodo);
+
 
 
 }

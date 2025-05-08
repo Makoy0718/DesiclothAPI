@@ -41,10 +41,21 @@ public class PagoController {
             return m.map(w, PagoDTO.class);
         }).collect(Collectors.toList());
     }
-
     //HU-PAG-18
     @DeleteMapping("/{id}")
     public void eliminarPago(@PathVariable int id) {paS.deletePago(id);}
+
+    //HU-PAG-55
+    @GetMapping("/buscarPorMetodo")
+    public List<PagoDTO> buscarPorMetodo(@RequestParam String metodo) {
+        return paS.buscarPorMetodoPago(metodo).stream().map( p-> {
+            ModelMapper m = new ModelMapper();
+            return m.map(p, PagoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+
+
 }
 
 
