@@ -26,6 +26,14 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     @Query("SELECT p FROM Pago p WHERE p.fechaPago = :fecha AND p.pedido.user.idUser = :idUser")
     List<Pago> buscarPagosPorUsuarioYFecha(@Param("idUser") int idUser, @Param("fecha") LocalDate fecha);
 
+    //HU-PAG-58
+    @Query(value = "select u.username AS nombreUsuario, SUM (p.monto_pago) AS totalPagado " +
+    "from pago p \n" +
+    "join pedido ped on p.id_pedido = ped.id_pedido \n" +
+    "join user u on ped.id_user = u.id_user \n" +
+    " GROUP BY u.username" , nativeQuery = true)
+    List<Object[]> obtenerTotalPagoPorUsuario();
+
 
 
 

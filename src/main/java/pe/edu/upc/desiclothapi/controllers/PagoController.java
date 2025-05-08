@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.GeneroDTO;
 import pe.edu.upc.desiclothapi.dtos.PagoDTO;
+import pe.edu.upc.desiclothapi.dtos.UsuarioMontoDTO;
 import pe.edu.upc.desiclothapi.entities.Pago;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IPagoService;
 
@@ -79,6 +80,17 @@ public class PagoController {
         return paS.buscarPagosPorUsuarioYFecha(idUser , fecha).stream().map( p -> {
             ModelMapper m = new ModelMapper();
             return m.map(p, PagoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    //HU-PAG-58
+    @GetMapping("/totalPagosPorUsuario")
+    public List<UsuarioMontoDTO> obtenerTotales(){
+        return paS.obtenerTotalPagosPorUsuario().stream().map( p -> {
+            String username = (String) p[0];
+            Double total = ((Number) p[1]).doubleValue();
+            return new UsuarioMontoDTO(username, total);
+
         }).collect(Collectors.toList());
     }
 }
