@@ -18,4 +18,6 @@ public interface IPedidoRepository extends JpaRepository<Pedido, Integer> {
     @Query("SELECT p.estadoPedido FROM Pedido p WHERE p.idPedido = :idPedido")
     Boolean obtenerEstadoPorId(@Param("idPedido") int idPedido);
 
+
+
 }

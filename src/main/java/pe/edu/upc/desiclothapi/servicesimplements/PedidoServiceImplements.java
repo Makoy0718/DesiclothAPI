@@ -14,6 +14,7 @@ public class PedidoServiceImplements implements IPedidoService {
     @Autowired
     private IPedidoRepository pR;
 
+    //HU-PED-16
     @Override
     public List<Pedido> listPedido() { return pR.findAll();}
 
