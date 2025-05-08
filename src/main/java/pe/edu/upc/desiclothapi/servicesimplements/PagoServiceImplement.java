@@ -11,6 +11,7 @@ public class PagoServiceImplement implements IPagoService {
     @Autowired
     private IPagoRepository paR;
 
+    //HU-PAG-54
     @Override
     public List<Pago> listPago() {return paR.findAll();}
 
