@@ -39,4 +39,9 @@ public class CategoriaServiceImplement implements ICategoriaService {
     public List<Categoria> ordenarZA() {
         return cR.ordenarZA();
     }
+    //HU-CAT-30
+    @Override
+    public List<Categoria> searchCategoria(String nombreC) {
+        return cR.buscarCategoria(nombreC);
+    }
 }

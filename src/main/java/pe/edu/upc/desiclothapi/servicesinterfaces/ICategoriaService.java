@@ -11,4 +11,5 @@ public interface ICategoriaService {
     public void deleteCategoria(int id); //HU-CAT-33
     List<Categoria> ordenarAZ(); //HU-CAT-34-01
     List<Categoria> ordenarZA(); //HU-CAT-34-02
+    public List<Categoria> searchCategoria(String nombreC); //HU-CAT-30
 }

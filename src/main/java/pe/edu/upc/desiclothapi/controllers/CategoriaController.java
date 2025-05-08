@@ -57,4 +57,12 @@ public class CategoriaController {
             return m.map(c, CategoriaDTO.class);
         }).collect(Collectors.toList());
     }
+    //HU-CAT-30
+    @GetMapping("/nombresC")
+    public List<CategoriaDTO> buscarCategoriaNombre(@RequestParam String nombreC) {
+        return cS.searchCategoria(nombreC).stream().map(y ->{
+            ModelMapper m = new ModelMapper();
+            return m.map(y,CategoriaDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
