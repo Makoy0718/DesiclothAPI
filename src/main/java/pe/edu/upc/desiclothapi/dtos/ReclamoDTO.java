@@ -9,6 +9,14 @@ public class ReclamoDTO {
     private String estado;
     private User user;
 
+    public ReclamoDTO(int idReclamo, String titulo, String descripcion, String estado, User user) {
+        this.idReclamo = idReclamo;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.user = user;
+    }
+
     public int getIdReclamo() {
         return idReclamo;
     }
