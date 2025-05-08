@@ -18,6 +18,7 @@ public class PedidoController {
     @Autowired
     private IPedidoService pS;
 
+    //HU-PED-16
     @GetMapping("/listarPedido")
     public List<PedidoDTO> listarPedido() {
         return pS.listPedido().stream().map( w->{
