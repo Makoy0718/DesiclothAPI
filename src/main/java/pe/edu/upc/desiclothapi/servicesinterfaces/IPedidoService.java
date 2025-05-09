@@ -10,6 +10,8 @@ public interface IPedidoService {
     //HU-PED-16
     public List<Pedido> listPedido();
 
+    public void insertPedido(Pedido pe);
+
     List<Pedido> buscarPorFechaPedido(LocalDate fecha);
 
     public Boolean obtenerEstadoPorId(int idPedido);
