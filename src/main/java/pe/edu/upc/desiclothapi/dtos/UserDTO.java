@@ -4,19 +4,19 @@ import pe.edu.upc.desiclothapi.entities.Galeria;
 import pe.edu.upc.desiclothapi.entities.Role;
 
 public class UserDTO {
-    private int idUser;
+    private int id;
     private String username;
     private String correoUser;
     private String password;
     private Role rol;
     private Galeria galeria;
 
-    public int getIdUser() {
-        return idUser;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
