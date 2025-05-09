@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.ModificarRolDTO;
 import pe.edu.upc.desiclothapi.dtos.UserDTO;
-import pe.edu.upc.desiclothapi.entities.User;
-import pe.edu.upc.desiclothapi.servicesinterfaces.IUserService;
+import pe.edu.upc.desiclothapi.entities.Users;
+import pe.edu.upc.desiclothapi.servicesinterfaces.IUsersService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    private IUserService uS;
+    private IUsersService uS;
 
 
     @GetMapping("/verUsuarios")
@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/registro")
     public void insertar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
-        User u = m.map(dto, User.class);
+        Users u = m.map(dto, Users.class);
         uS.insert(u);
     }
 
@@ -40,14 +40,14 @@ public class UserController {
     @PutMapping
     public void modificar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
-        User u = m.map(dto, User.class);
+        Users u = m.map(dto, Users.class);
         uS.update(u);
     }
 
     @PutMapping("/modificarRol")
     public void modificar(@RequestBody ModificarRolDTO dto) {
         ModelMapper m = new ModelMapper();
-        User u = m.map(dto, User.class);
+        Users u = m.map(dto, Users.class);
         uS.update(u);
     }
 

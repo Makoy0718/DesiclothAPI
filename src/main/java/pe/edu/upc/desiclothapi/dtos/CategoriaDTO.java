@@ -5,8 +5,13 @@ public class CategoriaDTO {
     private String nombreCategoria;
     private String descripcionCategoria;
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public CategoriaDTO() {
+    }
+
+    public CategoriaDTO(int idCategoria, String nombreCategoria, String descripcionCategoria) {
+        this.idCategoria = idCategoria;
+        this.nombreCategoria = nombreCategoria;
+        this.descripcionCategoria = descripcionCategoria;
     }
 
     public void setIdCategoria(int idCategoria) {

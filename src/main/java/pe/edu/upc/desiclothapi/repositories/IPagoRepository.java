@@ -11,7 +11,7 @@ import java.util.List;
 public interface IPagoRepository extends JpaRepository<Pago, Integer> {
 
     //HU-PAG-15
-    @Query("SELECT p FROM Pago p WHERE p.pedido.user.idUser  = :idUser")
+    @Query("SELECT p FROM Pago p WHERE p.pedido.users.id  = :idUser")
     List<Pago> buscarPagosPorUsuario(@Param("idUsuario") int idUser);
 
     //HU-PAG-55
@@ -23,7 +23,7 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     List<Pago> buscarPorFecha(@Param("fecha") LocalDate fecha);
 
     //HU-PAG-57
-    @Query("SELECT p FROM Pago p WHERE p.fechaPago = :fecha AND p.pedido.user.idUser = :idUser")
+    @Query("SELECT p FROM Pago p WHERE p.fechaPago = :fecha AND p.pedido.users.id = :idUser")
     List<Pago> buscarPagosPorUsuarioYFecha(@Param("idUser") int idUser, @Param("fecha") LocalDate fecha);
 
     //HU-PAG-58

@@ -1,12 +1,12 @@
 package pe.edu.upc.desiclothapi.dtos;
-import pe.edu.upc.desiclothapi.entities.User;
+import pe.edu.upc.desiclothapi.entities.Users;
 import java.time.LocalDate;
 
 public class PedidoDTO {
     private int idPedido;
     private LocalDate fechaPedido;
     private Boolean estadoPedido;
-    private User user;
+    private Users users;
 
     public int getIdPedido() {
         return idPedido;

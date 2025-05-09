@@ -18,10 +18,7 @@ public interface ICategoriaRepository extends JpaRepository<Categoria, Integer> 
     @Query("select a from Categoria a where a.nombreCategoria like %:nombreC%")
     public List<Categoria> buscarCategoria(@Param("nombreC") String nombreC);
     //HU-CAT-54
-    @Query(value = "select c.nombre_categoria, count(d.id_diseno) as Cantidad\n" +
-            "from categoria c inner join diseno d\n" +
-            "on c.id_categoria = d.id_categoria\n" +
-            "group by c.nombre_categoria",
-            nativeQuery = true)
+    @Query("SELECT d.categoria.nombreCategoria, COUNT(d.idDiseno) " +
+            "FROM Diseno d GROUP BY d.categoria.nombreCategoria")
     List<String[]> contarDisenosPorCategoria();
 }

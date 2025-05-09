@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     //HU-DIS-21
-    @Query("SELECT d FROM Diseno d WHERE d.genero = :idGenero AND d.categoria = :idCategoria")
+    @Query("SELECT d FROM Diseno d WHERE d.genero.idGenero = :idGenero AND d.categoria.idCategoria = :idCategoria")
     List<Diseno> buscarPorGeneroYCategoria(@Param("idGenero") int idGenero, @Param("idCategoria") int idCategoria);
     //HU-DIS-22
     @Query("SELECT d FROM Diseno d WHERE d.fechaOrigenDiseno >= :fechaLimite")
@@ -21,13 +21,13 @@ public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     @Query("SELECT d FROM Diseno d WHERE d.tipoOrigenDiseno = :tipo")
     List<Diseno> buscarByTipoOrigen(@Param("tipo") String tipo);
     //HU-DIS-55
-    @Query("SELECT d FROM Diseno d WHERE d.genero = :idGenero")
+    @Query("SELECT d FROM Diseno d WHERE d.genero.idGenero = :idGenero")
     List<Diseno> buscarPorGenero(@Param("idGenero") int idGenero);
     //HU-DIS-56
-    @Query("SELECT d FROM Diseno d WHERE d.categoria = :idCategoria")
+    @Query("SELECT d FROM Diseno d WHERE d.categoria.idCategoria = :idCategoria")
     List<Diseno> buscarPorCategoria(@Param("idCategoria") int idCategoria);
     //HU-GEN-39
-    @Query("SELECT d FROM Diseno d JOIN Genero g ON d.genero = g.idGenero WHERE g.nombreGenero = :nombreGenero")
+    @Query("SELECT d FROM Diseno d WHERE d.genero.nombreGenero = :nombreGenero")
     public List<Diseno> buscarPorNombreGenero(@Param("nombreGenero") String nombreGenero);
     //HU-DIS-26
     @Query("SELECT d.tipoOrigenDiseno, AVG(d.precioDiseno) FROM Diseno d GROUP BY d.tipoOrigenDiseno")

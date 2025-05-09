@@ -21,18 +21,18 @@ public class Reclamo {
 
     // Relación ManyToOne con Usuario (un usuario puede hacer muchos reclamos)
     @ManyToOne
-    @JoinColumn(name = "idUser")
-    private User user;
+    @JoinColumn(name = "id")
+    private Users users;
 
     public Reclamo() {
     }
 
-    public Reclamo(int idReclamo, String titulo, String descripcion, String estado, User user) {
+    public Reclamo(int idReclamo, String titulo, String descripcion, String estado, Users users) {
         this.idReclamo = idReclamo;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.estado = estado;
-        this.user = user;
+        this.users = users;
     }
 
     public int getIdReclamo() {
@@ -67,11 +67,11 @@ public class Reclamo {
         this.estado = estado;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

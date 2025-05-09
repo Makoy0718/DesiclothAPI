@@ -3,11 +3,11 @@ package pe.edu.upc.desiclothapi.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "Users")
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private int id;
 
     @Column(name = "username", length = 50, nullable = false)
     private String username;
@@ -19,18 +19,18 @@ public class User {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "idRol")
+    @JoinColumn(name = "idRole")
     private Role rol;
 
     @OneToOne
     @JoinColumn(name = "idGaleria")
     private Galeria galeria;
 
-    public User() {
+    public Users() {
     }
 
-    public User(int idUser, String username, String correoUser, String password, Role rol, Galeria galeria) {
-        this.idUser = idUser;
+    public Users(int id, String username, String correoUser, String password, Role rol, Galeria galeria) {
+        this.id = id;
         this.username = username;
         this.correoUser = correoUser;
         this.password = password;
@@ -38,12 +38,12 @@ public class User {
         this.galeria = galeria;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
