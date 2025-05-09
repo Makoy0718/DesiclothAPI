@@ -1,7 +1,7 @@
 package pe.edu.upc.desiclothapi.dtos;
 
 import pe.edu.upc.desiclothapi.entities.GaleriaDiseno;
-import pe.edu.upc.desiclothapi.entities.User;
+import pe.edu.upc.desiclothapi.entities.Users;
 
 import java.util.List;
 
@@ -11,8 +11,6 @@ public class GaleriaDTO {
     private String nombreGaleria;
     private boolean visibilidadGaleria;
     private int ratingGaleria;
-    private User user;
-    private List<GaleriaDiseno> galeriaDisenos;
 
     public int getIdGaleria() {
         return idGaleria;
@@ -44,21 +42,5 @@ public class GaleriaDTO {
 
     public void setRatingGaleria(int ratingGaleria) {
         this.ratingGaleria = ratingGaleria;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<GaleriaDiseno> getGaleriaDisenos() {
-        return galeriaDisenos;
-    }
-
-    public void setGaleriaDisenos(List<GaleriaDiseno> galeriaDisenos) {
-        this.galeriaDisenos = galeriaDisenos;
     }
 }

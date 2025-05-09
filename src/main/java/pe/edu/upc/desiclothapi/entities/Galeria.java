@@ -21,25 +21,14 @@ public class Galeria {
     @Column(name = "ratingGaleria")
     private int ratingGaleria;
 
-    // Relación ManyToOne con Usuario (un usuario puede tener muchas galerías)
-    @ManyToOne
-    @JoinColumn(name = "idUser")
-    private User user;
-
-    // Relación OneToMany con GaleriaDiseno (una galería puede tener muchos diseños)
-    @OneToMany(mappedBy = "galeria")
-    private List<GaleriaDiseno> galeriaDisenos;
-
     public Galeria() {
     }
 
-    public Galeria(int idGaleria, String nombreGaleria, boolean visibilidadGaleria, int ratingGaleria, User user, List<GaleriaDiseno> galeriaDisenos) {
+    public Galeria(int idGaleria, String nombreGaleria, boolean visibilidadGaleria, int ratingGaleria) {
         this.idGaleria = idGaleria;
         this.nombreGaleria = nombreGaleria;
         this.visibilidadGaleria = visibilidadGaleria;
         this.ratingGaleria = ratingGaleria;
-        this.user = user;
-        this.galeriaDisenos = galeriaDisenos;
     }
 
     public int getIdGaleria() {
@@ -72,21 +61,5 @@ public class Galeria {
 
     public void setRatingGaleria(int ratingGaleria) {
         this.ratingGaleria = ratingGaleria;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<GaleriaDiseno> getGaleriaDisenos() {
-        return galeriaDisenos;
-    }
-
-    public void setGaleriaDisenos(List<GaleriaDiseno> galeriaDisenos) {
-        this.galeriaDisenos = galeriaDisenos;
     }
 }

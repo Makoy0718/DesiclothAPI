@@ -18,15 +18,15 @@ public class Pedido {
     private Boolean estadoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "idUser")
-    private User user;
+    @JoinColumn(name = "id")
+    private Users users;
 
     public Pedido() {
     }
 
-    public Pedido(int idPedido, User user, Boolean estadoPedido, LocalDate fechaPedido) {
+    public Pedido(int idPedido, Users users, Boolean estadoPedido, LocalDate fechaPedido) {
         this.idPedido = idPedido;
-        this.user = user;
+        this.users = users;
         this.estadoPedido = estadoPedido;
         this.fechaPedido = fechaPedido;
     }
@@ -55,11 +55,11 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

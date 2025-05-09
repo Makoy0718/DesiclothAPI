@@ -42,13 +42,13 @@ public class Diseno {
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "idUser")
-    private User user;
+    @JoinColumn(name = "id")
+    private Users users;
 
     public Diseno() {
     }
 
-    public Diseno(int idDiseno, String imagenDiseno, int precioDiseno, LocalDate fechaOrigenDiseno, String tipoOrigenDiseno, String promtDiseno, String respuestaTextoDiseno, Categoria categoria, Genero genero, Producto producto, User user) {
+    public Diseno(int idDiseno, String imagenDiseno, int precioDiseno, LocalDate fechaOrigenDiseno, String tipoOrigenDiseno, String promtDiseno, String respuestaTextoDiseno, Categoria categoria, Genero genero, Producto producto, Users users) {
         this.idDiseno = idDiseno;
         this.imagenDiseno = imagenDiseno;
         this.precioDiseno = precioDiseno;
@@ -59,7 +59,7 @@ public class Diseno {
         this.categoria = categoria;
         this.genero = genero;
         this.producto = producto;
-        this.user = user;
+        this.users = users;
     }
 
     public int getIdDiseno() {
@@ -142,11 +142,11 @@ public class Diseno {
         this.producto = producto;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

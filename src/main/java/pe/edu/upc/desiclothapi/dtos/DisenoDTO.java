@@ -3,7 +3,7 @@ package pe.edu.upc.desiclothapi.dtos;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.entities.Genero;
 import pe.edu.upc.desiclothapi.entities.Producto;
-import pe.edu.upc.desiclothapi.entities.User;
+import pe.edu.upc.desiclothapi.entities.Users;
 
 import java.time.LocalDate;
 
@@ -18,7 +18,7 @@ public class DisenoDTO {
     private Categoria categoria;
     private Genero genero;
     private Producto producto;
-    private User user;
+    private Users users;
 
     public int getIdDiseno() {
         return idDiseno;
@@ -100,11 +100,11 @@ public class DisenoDTO {
         this.producto = producto;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

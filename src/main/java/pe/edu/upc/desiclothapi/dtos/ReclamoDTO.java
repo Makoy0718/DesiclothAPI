@@ -1,20 +1,20 @@
 package pe.edu.upc.desiclothapi.dtos;
 
-import pe.edu.upc.desiclothapi.entities.User;
+import pe.edu.upc.desiclothapi.entities.Users;
 
 public class ReclamoDTO {
     private int idReclamo;
     private String titulo;
     private String descripcion;
     private String estado;
-    private User user;
+    private Users users;
 
-    public ReclamoDTO(int idReclamo, String titulo, String descripcion, String estado, User user) {
+    public ReclamoDTO(int idReclamo, String titulo, String descripcion, String estado, Users users) {
         this.idReclamo = idReclamo;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.estado = estado;
-        this.user = user;
+        this.users = users;
     }
 
     public int getIdReclamo() {
@@ -49,11 +49,11 @@ public class ReclamoDTO {
         this.estado = estado;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

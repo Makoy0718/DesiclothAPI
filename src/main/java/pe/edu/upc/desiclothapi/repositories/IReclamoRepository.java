@@ -18,8 +18,8 @@ public interface IReclamoRepository extends JpaRepository<Reclamo, Integer> {
 
 
     //HU-REC-10
-    @Query("SELECT r.user.idUser AS userId, r.user.username AS username, r.user.correoUser AS correoUser, COUNT(r) AS totalReclamos\n" +
+    @Query("SELECT r.users.id AS userId, r.users.username AS username, r.users.correoUser AS correoUser, COUNT(r) AS totalReclamos\n" +
             "FROM Reclamo r\n" +
-            "GROUP BY r.user.idUser")
+            "GROUP BY r.users.id")
     List<Object[]> findReclamosCountByEstadoAndUser();
 }

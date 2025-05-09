@@ -2,30 +2,30 @@ package pe.edu.upc.desiclothapi.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.desiclothapi.entities.User;
-import pe.edu.upc.desiclothapi.repositories.IUserRepository;
-import pe.edu.upc.desiclothapi.servicesinterfaces.IUserService;
+import pe.edu.upc.desiclothapi.entities.Users;
+import pe.edu.upc.desiclothapi.repositories.IUsersRepository;
+import pe.edu.upc.desiclothapi.servicesinterfaces.IUsersService;
 
 import java.util.List;
 
 @Service
-public class UserServiceImplement implements IUserService {
+public class UsersServiceImplement implements IUsersService {
 
     @Autowired
-    public IUserRepository uR;
+    public IUsersRepository uR;
 
     @Override
-    public List<User> list() {
+    public List<Users> list() {
         return uR.findAll();
     }
 
     @Override
-    public void insert(User u) {
+    public void insert(Users u) {
         uR.save(u);
     }
 
     @Override
-    public void update(User u) {
+    public void update(Users u) {
         uR.save(u);
     }
 
