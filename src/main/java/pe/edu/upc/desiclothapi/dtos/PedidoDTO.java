@@ -8,6 +8,16 @@ public class PedidoDTO {
     private Boolean estadoPedido;
     private Users users;
 
+    public PedidoDTO() {
+    }
+
+    public PedidoDTO(int idPedido, LocalDate fechaPedido, Boolean estadoPedido, Users users) {
+        this.idPedido = idPedido;
+        this.fechaPedido = fechaPedido;
+        this.estadoPedido = estadoPedido;
+        this.users = users;
+    }
+
     public int getIdPedido() {
         return idPedido;
     }
@@ -30,5 +40,13 @@ public class PedidoDTO {
 
     public void setEstadoPedido(Boolean estadoPedido) {
         this.estadoPedido = estadoPedido;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }
