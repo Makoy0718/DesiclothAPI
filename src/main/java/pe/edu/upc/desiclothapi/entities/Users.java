@@ -17,27 +17,22 @@ public class Users implements Serializable {
     @Column(name = "correoUser", length = 50, nullable = false)
     private String correoUser;
 
-    @Column(name = "password", length = 50, nullable = false)
+    @Column(name = "password", length = 100, nullable = false)
     private String password;
 
     @ManyToOne
     @JoinColumn(name = "idRole")
     private Role rol;
 
-    @OneToOne
-    @JoinColumn(name = "idGaleria")
-    private Galeria galeria;
-
     public Users() {
     }
 
-    public Users(int idUser, String username, String correoUser, String password, Role rol, Galeria galeria) {
+    public Users(int idUser, String username, String correoUser, String password, Role rol) {
         this.idUser = idUser;
         this.username = username;
         this.correoUser = correoUser;
         this.password = password;
         this.rol = rol;
-        this.galeria = galeria;
     }
 
     public int getIdUser() {
@@ -80,11 +75,4 @@ public class Users implements Serializable {
         this.rol = rol;
     }
 
-    public Galeria getGaleria() {
-        return galeria;
-    }
-
-    public void setGaleria(Galeria galeria) {
-        this.galeria = galeria;
-    }
 }

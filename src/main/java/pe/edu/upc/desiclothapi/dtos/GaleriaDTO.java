@@ -11,6 +11,7 @@ public class GaleriaDTO {
     private String nombreGaleria;
     private boolean visibilidadGaleria;
     private int ratingGaleria;
+    private Users users;
 
     public int getIdGaleria() {
         return idGaleria;
@@ -42,5 +43,13 @@ public class GaleriaDTO {
 
     public void setRatingGaleria(int ratingGaleria) {
         this.ratingGaleria = ratingGaleria;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

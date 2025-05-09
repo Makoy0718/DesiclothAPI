@@ -1,6 +1,8 @@
 package pe.edu.upc.desiclothapi.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.desiclothapi.entities.Role;
 import pe.edu.upc.desiclothapi.entities.Users;
@@ -17,6 +19,8 @@ public class UsersServiceImplement implements IUsersService {
     public IUsersRepository uR;
     @Autowired
     public IRoleRepository rR;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Users> list() {
@@ -25,6 +29,7 @@ public class UsersServiceImplement implements IUsersService {
 
     @Override
     public void insert(Users u) {
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         uR.save(u);
     }
 

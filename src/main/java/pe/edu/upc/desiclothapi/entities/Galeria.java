@@ -21,6 +21,11 @@ public class Galeria {
     @Column(name = "ratingGaleria")
     private int ratingGaleria;
 
+    // Relación ManyToOne con Usuario (un usuario puede hacer muchos reclamos)
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Users users;
+
     public Galeria() {
     }
 
