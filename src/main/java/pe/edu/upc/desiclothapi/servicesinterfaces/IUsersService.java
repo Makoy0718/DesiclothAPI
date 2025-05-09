@@ -9,5 +9,6 @@ public interface IUsersService {
     public List<Users> list();
     public void insert(Users u);
     public void update(Users u);
+    public void updateRole(int id, int idRole);
     public void delete(int id);
 }
