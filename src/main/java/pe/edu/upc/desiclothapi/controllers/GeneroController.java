@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.GeneroDTO;
 import pe.edu.upc.desiclothapi.entities.Genero;
@@ -18,6 +19,7 @@ public class GeneroController {
 
 
     @GetMapping("/lista")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<GeneroDTO> listar() {
         return gS.list().stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -27,6 +29,7 @@ public class GeneroController {
 
 
     @PostMapping("/creacion")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody GeneroDTO dto) {
         ModelMapper m = new ModelMapper();
         Genero g = m.map(dto, Genero.class);
@@ -35,6 +38,7 @@ public class GeneroController {
 
 
     @PutMapping("/edicion")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody GeneroDTO dto) {
         ModelMapper m = new ModelMapper();
         Genero g = m.map(dto, Genero.class);
@@ -42,6 +46,7 @@ public class GeneroController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         gS.delete(id);
     }
