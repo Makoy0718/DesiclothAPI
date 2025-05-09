@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.ComparacionPreciosDisenoDTO;
 import pe.edu.upc.desiclothapi.dtos.ConteoDisenoCategoriaOrigenDTO;
@@ -20,6 +21,7 @@ public class DisenoController {
 
     //HU-DIS-20
     @PostMapping("/insertarDiseno")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertarDiseno(@RequestBody DisenoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diseno d = m.map(dto, Diseno.class);
@@ -27,6 +29,7 @@ public class DisenoController {
     }
     //HU-DIS-25
     @GetMapping("/listaDiseno")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<DisenoDTO> listaDiseno() {
         return dS.listDiseno().stream().map(w ->{
             ModelMapper m = new ModelMapper();
@@ -35,6 +38,7 @@ public class DisenoController {
     }
     //HU-DIS-28
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminarDiseno(@PathVariable("id") int id) {
         dS.deleteDiseno(id);
     }
@@ -48,6 +52,7 @@ public class DisenoController {
     }
     //HU-DIS-22
     @GetMapping("/disenosRecientes")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<DisenoDTO> disenosRecientes() {
         return dS.findByFechaOrigenDisenoReciente().stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -56,6 +61,7 @@ public class DisenoController {
     }
     //HU-DIS-23
     @GetMapping("/buscarPorOrigen")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<DisenoDTO> buscarPorOrigen(@RequestParam String tipo) {
         return dS.findByTipoOrigenDiseno(tipo).stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -64,12 +70,14 @@ public class DisenoController {
     }
     //HU-DIS-24
     @GetMapping("/detalleDiseno")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public DisenoDTO detalleDiseno(@RequestParam int id) {
         ModelMapper m = new ModelMapper();
         return m.map(dS.findById(id), DisenoDTO.class);
     }
     //HU-DIS-55
     @GetMapping("/buscarPorGenero")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<DisenoDTO> buscarPorGenero(@RequestParam int idGenero) {
         return dS.findByGeneroId(idGenero).stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -78,6 +86,7 @@ public class DisenoController {
     }
     //HU-DIS-56
     @GetMapping("/buscarPorCategoria")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<DisenoDTO> buscarPorCategoria(@RequestParam int idCategoria) {
         return dS.findByCategoriaId(idCategoria).stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -86,6 +95,7 @@ public class DisenoController {
     }
     //HU-GEN-39
     @GetMapping("/buscarPorNombreGenero")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<DisenoDTO> buscarPorNombreGenero(@RequestParam String nombre) {
         return dS.findByGeneroNombre(nombre).stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -94,6 +104,7 @@ public class DisenoController {
     }
     //HU-DIS-26
     @GetMapping("/compararPreciosOrigen")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ComparacionPreciosDisenoDTO> compararPreciosOrigen() {
         return dS.comparePreciosByOrigen().stream().map(fila -> {
             String origen = (String) fila[0];
@@ -103,6 +114,7 @@ public class DisenoController {
     }
     //HU-DIS-27
     @GetMapping("/conteoDisenosPorCategoriaYOrigen")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ConteoDisenoCategoriaOrigenDTO> conteoDisenosPorCategoriaYOrigen() {
         return dS.countDisenosByCategoriaYOrigen().stream().map(fila -> {
             String categoria = (String) fila[0];

@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.GeneroDTO;
 import pe.edu.upc.desiclothapi.dtos.PagoDTO;
@@ -24,6 +25,7 @@ public class PagoController {
 
     //HU-PAG-54
     @GetMapping("/listaPago")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PagoDTO> listarPago() {
         return paS.listPago().stream().map(w -> {
             ModelMapper m = new ModelMapper();
@@ -32,6 +34,7 @@ public class PagoController {
     }
     //Insertar-HU-PAG-17
     @PostMapping("/insertarPago")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertPago(@RequestBody PagoDTO p) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(p, Pago.class);
@@ -40,6 +43,7 @@ public class PagoController {
 
     //ActualizarPago
     @PutMapping("/actualizarPago")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void actualizarPago(@RequestBody PagoDTO p) {
         ModelMapper m = new ModelMapper();
         Pago pa = m.map(p, Pago.class);
@@ -47,6 +51,7 @@ public class PagoController {
     }
     //HU-PAG-15
     @GetMapping("/buscarPorUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PagoDTO> buscarPorUsuario(@RequestParam int idUsuario) {
         return paS.searchByUsuario(idUsuario).stream().map(w-> {
             ModelMapper m = new ModelMapper();
@@ -55,10 +60,12 @@ public class PagoController {
     }
     //HU-PAG-18
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminarPago(@PathVariable int id) {paS.deletePago(id);}
 
     //HU-PAG-55
     @GetMapping("/buscarPorMetodo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PagoDTO> buscarPorMetodo(@RequestParam String metodo) {
         return paS.buscarPorMetodoPago(metodo).stream().map( p-> {
             ModelMapper m = new ModelMapper();
@@ -67,6 +74,7 @@ public class PagoController {
     }
     //HU-PAG-56
     @GetMapping("/buscarPorFecha")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PagoDTO> buscarPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha)
     {
         return paS.buscarPorFechaPago(fecha).stream().map( p-> {
@@ -76,6 +84,7 @@ public class PagoController {
     }
     //HU-PAG-57
     @GetMapping("/buscarPorUsuarioYFecha")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PagoDTO> buscarPorUserYFecha(@RequestParam int idUser, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
         return paS.buscarPagosPorUsuarioYFecha(idUser , fecha).stream().map( p -> {
             ModelMapper m = new ModelMapper();
@@ -85,6 +94,7 @@ public class PagoController {
 
     //HU-PAG-58
     @GetMapping("/totalPagosPorUsuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioMontoDTO> obtenerTotales(){
         return paS.obtenerTotalPagosPorUsuario().stream().map( p -> {
             String username = (String) p[0];

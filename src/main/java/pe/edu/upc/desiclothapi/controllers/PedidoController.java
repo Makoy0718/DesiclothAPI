@@ -3,6 +3,7 @@ package pe.edu.upc.desiclothapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.PedidoDTO;
 import pe.edu.upc.desiclothapi.entities.Pedido;
@@ -20,6 +21,7 @@ public class PedidoController {
 
     //HU-PED-16
     @GetMapping("/listarPedido")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PedidoDTO> listarPedido() {
         return pS.listPedido().stream().map( w->{
             ModelMapper m=new ModelMapper();
@@ -27,6 +29,7 @@ public class PedidoController {
         }).collect(Collectors.toList());
     }
     @PostMapping("/insertarPedido")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertarPedido(@RequestBody PedidoDTO dto) {
         ModelMapper m=new ModelMapper();
         Pedido p = m.map(dto, Pedido.class);
@@ -35,6 +38,7 @@ public class PedidoController {
     }
 
     @GetMapping("/buscarPorFecha")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<PedidoDTO> buscarPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
         return pS.buscarPorFechaPedido(fecha).stream().map(p->{
                 ModelMapper m = new ModelMapper();
@@ -43,6 +47,7 @@ public class PedidoController {
     }
 
     @GetMapping("/estadoPedido/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public Boolean obtenerEstado(@PathVariable("id")int idPedido) {
         return pS.obtenerEstadoPorId(idPedido);
     }

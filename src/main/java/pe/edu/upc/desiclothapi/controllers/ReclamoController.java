@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.CountReclamoPorUsuarioDTO;
 import pe.edu.upc.desiclothapi.dtos.ReclamoDTO;
@@ -19,6 +20,7 @@ public class ReclamoController {
 
     //HU-REC-08
     @GetMapping("/listarReclamos")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<ReclamoDTO> listarReclamos() {
         return  rS.listReclamos().stream().map(w->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class ReclamoController {
 
     //HU-REC-05
     @PostMapping("/insertarReclamos")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertarReclamos(@RequestBody ReclamoDTO dto) {
         ModelMapper m = new ModelMapper();
         Reclamo r = m.map(dto, Reclamo.class);
@@ -36,6 +39,7 @@ public class ReclamoController {
 
     //HU-REC-06
     @GetMapping("/buscarPorTitulo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<ReclamoDTO> buscarPorTitulo(@RequestParam String titulo) {
         return rS.buscarPorTitulo(titulo).stream().map(r -> {
             ModelMapper m = new ModelMapper();
@@ -45,6 +49,7 @@ public class ReclamoController {
 
     //HU-REC-07
     @GetMapping("/{idReclamo}/estado")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public ReclamoDTO consultarEstadoReclamo(@PathVariable int idReclamo) {
         // Obtener el estado del reclamo desde el servicio
         String estado = rS.consultarEstadoReclamo(idReclamo);
@@ -54,6 +59,7 @@ public class ReclamoController {
 
     //HU-REC-09
     @PutMapping("/{idReclamo}/estado")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public ReclamoDTO actualizarEstadoReclamo(@PathVariable int idReclamo, @RequestParam String estado) {
         // Actualizamos el estado del reclamo
         Reclamo reclamoActualizado = rS.actualizarEstadoReclamo(idReclamo, estado);
@@ -64,6 +70,7 @@ public class ReclamoController {
 
     //HU-REC-10
     @GetMapping("/reclamos-contados")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<CountReclamoPorUsuarioDTO> consultarReclamosContados() {
         return rS.CountReclamosContadosPorEstadoYUsuario().stream().map(fila->{
             String estado = (String) fila[0];

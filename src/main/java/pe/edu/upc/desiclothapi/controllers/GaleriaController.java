@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.GaleriaDTO;
 import pe.edu.upc.desiclothapi.dtos.PromedioRatingDTO;
@@ -21,6 +22,7 @@ public class GaleriaController {
 
     //HU-GAL--45
     @GetMapping("/listarGaleria")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<GaleriaDTO> ListarGalerias() {
         return gS.listGaleria().stream().map(g -> {
             ModelMapper m = new ModelMapper();
@@ -30,6 +32,7 @@ public class GaleriaController {
 
     //HU-GAL--41
     @PostMapping("/insertarGaleria")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertarGaleria(@RequestBody GaleriaDTO dto) {
         ModelMapper m = new ModelMapper();
         Galeria g = m.map(dto, Galeria.class);
@@ -38,6 +41,7 @@ public class GaleriaController {
 
     //HU-GAL--42
     @GetMapping("/buscarPorNombre")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<GaleriaDTO> buscarPorNombre(@RequestParam String nombre) {
         return gS.searchByNombre(nombre).stream().map(y -> {
             ModelMapper m = new ModelMapper();
@@ -46,6 +50,7 @@ public class GaleriaController {
     }
     //HU-GAL--43
     @PutMapping("/cambiarVisibilidadGaleria/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public GaleriaDTO cambiarVisibilidadGaleria(@PathVariable int id, @RequestParam boolean visible) {
         ModelMapper m = new ModelMapper();
         return m.map(gS.cambiarVisibilidadGaleria(id, visible), GaleriaDTO.class);
@@ -53,6 +58,7 @@ public class GaleriaController {
 
     //HU-GAL--44
     @PostMapping("/{idGaleria}/valorar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public String valorarGaleria(@PathVariable int idGaleria, @RequestParam int rating) {
         gS.valorarGaleria(idGaleria, rating);
         return "Galería valorada con éxito.";
@@ -60,6 +66,7 @@ public class GaleriaController {
 
     //HU-GAL--47
     @GetMapping("/{idGaleria}/rating-promedio")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public PromedioRatingDTO obtenerRatingPromedio(@PathVariable int idGaleria) {
         // Obtener el promedio desde el servicio
         Double promedio = gS.obtenerPromedioRatingGaleria(idGaleria);
@@ -73,6 +80,7 @@ public class GaleriaController {
 
     //HU-GAL-54
     @GetMapping("/ia")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<TotalGaleriasConIADTO> obtenerGaleriasConIA() {
         List<TotalGaleriasConIADTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=gS.getTotalGaleriasConIA();
