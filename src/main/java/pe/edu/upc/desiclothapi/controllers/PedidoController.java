@@ -26,6 +26,13 @@ public class PedidoController {
             return m.map(w, PedidoDTO.class);
         }).collect(Collectors.toList());
     }
+    @PostMapping("/insertarPedido")
+    public void insertarPedido(@RequestBody PedidoDTO dto) {
+        ModelMapper m=new ModelMapper();
+        Pedido p = m.map(dto, Pedido.class);
+        pS.insertPedido(p);
+
+    }
 
     @GetMapping("/buscarPorFecha")
     public List<PedidoDTO> buscarPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
