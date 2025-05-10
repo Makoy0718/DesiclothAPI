@@ -2,9 +2,12 @@ package pe.edu.upc.desiclothapi.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.UserDTO;
+import pe.edu.upc.desiclothapi.dtos.UserResponseDTO;
 import pe.edu.upc.desiclothapi.entities.Users;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IUsersService;
 
@@ -30,12 +33,14 @@ public class UserController {
 
 
     @PostMapping("/registro")
-    public void insertar(@RequestBody UserDTO dto) {
+    public ResponseEntity<UserResponseDTO> insertar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto, Users.class);
         uS.insert(u);
-    }
 
+        UserResponseDTO response = m.map(u, UserResponseDTO.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 
 
     @PutMapping

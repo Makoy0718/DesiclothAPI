@@ -1,13 +1,11 @@
 package pe.edu.upc.desiclothapi.dtos;
 
-import pe.edu.upc.desiclothapi.entities.Galeria;
 import pe.edu.upc.desiclothapi.entities.Role;
 
-public class UserDTO {
+public class UserResponseDTO {
     private int idUser;
     private String username;
     private String correoUser;
-    private String password;
     private Role rol;
 
     public int getIdUser() {
@@ -32,14 +30,6 @@ public class UserDTO {
 
     public void setCorreoUser(String correoUser) {
         this.correoUser = correoUser;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Role getRol() {
