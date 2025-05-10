@@ -63,7 +63,12 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/login", "/registro").permitAll() // Permitir acceso sin autenticación
+                        .requestMatchers(
+                                "/login",
+                                "/usuarios/registro",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll() // Permitir acceso sin autenticación
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable) // Deshabilitar login por formulario
