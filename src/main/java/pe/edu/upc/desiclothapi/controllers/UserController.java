@@ -24,24 +24,25 @@ public class UserController {
 
     @GetMapping("/verUsuarios")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
-    public List<UserDTO> listar() {
+    public List<UserResponseDTO> listar() {
         return uS.list().stream().map(w -> {
             ModelMapper m = new ModelMapper();
-            return m.map(w, UserDTO.class);
+            return m.map(w, UserResponseDTO.class);
         }).collect(Collectors.toList());
     }
 
 
     @PostMapping("/registro")
     public ResponseEntity<UserResponseDTO> insertar(@RequestBody UserDTO dto) {
+        if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("La contraseña no puede estar vacía");
+        }
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto, Users.class);
         uS.insert(u);
-
         UserResponseDTO response = m.map(u, UserResponseDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
 
     @PutMapping
     @PreAuthorize("hasAuthority('ADMIN')")
