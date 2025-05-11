@@ -19,6 +19,15 @@ public class PedidoController {
     @Autowired
     private IPedidoService pS;
 
+    //buscar-id-pedido
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public PedidoDTO buscarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        PedidoDTO dto = m.map(pS.buscarPedidoPorId(id), PedidoDTO.class);
+        return dto;
+    }
+
     //HU-PED-16
     @GetMapping("/listarPedido")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")

@@ -9,6 +9,8 @@ import pe.edu.upc.desiclothapi.servicesinterfaces.IPedidoService;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 public class PedidoServiceImplements implements IPedidoService {
     @Autowired
@@ -18,7 +20,11 @@ public class PedidoServiceImplements implements IPedidoService {
     @Override
     public List<Pedido> listPedido() { return pR.findAll();}
 
-
+    //buscar-id-pedido
+    @Override
+    public Pedido buscarPedidoPorId(int id){
+        return pR.findById(id).orElse(new Pedido());
+    }
     @Override
     public void insertPedido(Pedido pe){ pR.save(pe); }
 
