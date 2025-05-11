@@ -11,7 +11,7 @@ public class Role implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idRole;
 
-    @Column(name = "nombreRole",length = 50, nullable = false)
+    @Column(name = "nombreRole",length = 50, nullable = false, unique = true)
     private String nombreRole;
 
     @Column(name = "descripcionRole",length = 500, nullable = false)

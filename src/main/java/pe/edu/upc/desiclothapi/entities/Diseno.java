@@ -142,11 +142,11 @@ public class Diseno {
         this.producto = producto;
     }
 
-    public Users getUser() {
+    public Users getUsers() {
         return users;
     }
 
-    public void setUser(Users users) {
+    public void setUsers(Users users) {
         this.users = users;
     }
 }

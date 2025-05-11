@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.repositories.ICategoriaRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
@@ -25,7 +26,9 @@ public class CategoriaServiceImplement implements ICategoriaService {
     }
     //HU-CAT-32
     @Override
-    public void updateCategoria(Categoria c) { cR.save(c); }
+    public void updateCategoria(Categoria c) {
+        cR.save(c);
+    }
     //HU-CAT-33
     @Override
     public void deleteCategoria(int id) { cR.deleteById(id); }
@@ -46,7 +49,13 @@ public class CategoriaServiceImplement implements ICategoriaService {
     }
 
     @Override
-    public List<String[]> contarDisenosPorCategoria() {
+    public List<ConteoCategoriaPorDisenoDTO> obtenerCantidadDisenosPorCategoria() {
         return cR.contarDisenosPorCategoria();
+    }
+
+
+    @Override
+    public Categoria findById(int id) {
+        return cR.findById(id).orElse(new Categoria());
     }
 }
