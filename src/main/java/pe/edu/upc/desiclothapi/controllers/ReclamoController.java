@@ -44,6 +44,7 @@ public class ReclamoController {
         ModelMapper m = new ModelMapper();
         ReclamoDTO dto = m.map(rS.buscarReclamoPorId(id), ReclamoDTO.class);
         return dto;
+
     }
 
     //HU-REC-06
