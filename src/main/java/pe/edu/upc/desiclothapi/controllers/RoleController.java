@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.desiclothapi.dtos.GeneroDTO;
 import pe.edu.upc.desiclothapi.dtos.RoleDTO;
 import pe.edu.upc.desiclothapi.entities.Role;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IRoleService;
@@ -45,6 +46,13 @@ public class RoleController {
         ModelMapper m = new ModelMapper();
         Role r = m.map(dto, Role.class);
         rS.update(r);
+    }
+
+    @GetMapping("/{id}")
+    public RoleDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        RoleDTO dto = m.map(rS.searchById(id), RoleDTO.class);
+        return dto;
     }
 
     @DeleteMapping("/{id}")

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.desiclothapi.entities.Genero;
 
 @Repository
-public interface IGeneroRepository extends JpaRepository<Genero, Long> {
+public interface IGeneroRepository extends JpaRepository<Genero, Integer> {
 
 
 }

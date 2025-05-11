@@ -31,7 +31,6 @@ public class UserController {
         }).collect(Collectors.toList());
     }
 
-
     @PostMapping("/registro")
     public ResponseEntity<UserResponseDTO> insertar(@RequestBody UserDTO dto) {
         if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
@@ -58,6 +57,12 @@ public class UserController {
         uS.updateRole(id, idRole);
     }
 
+    @GetMapping("/{id}")
+    public UserDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        UserDTO dto = m.map(uS.searchById(id), UserDTO.class);
+        return dto;
+    }
 
 
     @DeleteMapping("/{id}")
