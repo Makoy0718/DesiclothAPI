@@ -42,7 +42,7 @@ public class Diseno {
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idUser")
     private Users users;
 
     public Diseno() {

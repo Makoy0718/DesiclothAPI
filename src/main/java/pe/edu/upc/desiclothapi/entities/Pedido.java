@@ -18,17 +18,17 @@ public class Pedido {
     private Boolean estadoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idUser")
     private Users users;
 
     public Pedido() {
     }
 
-    public Pedido(int idPedido, Users users, Boolean estadoPedido, LocalDate fechaPedido) {
+    public Pedido(int idPedido, LocalDate fechaPedido, Boolean estadoPedido, Users users) {
         this.idPedido = idPedido;
-        this.users = users;
-        this.estadoPedido = estadoPedido;
         this.fechaPedido = fechaPedido;
+        this.estadoPedido = estadoPedido;
+        this.users = users;
     }
 
     public int getIdPedido() {
