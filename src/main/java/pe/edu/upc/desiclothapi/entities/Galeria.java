@@ -23,17 +23,18 @@ public class Galeria {
 
     // Relación ManyToOne con Usuario (un usuario puede hacer muchos reclamos)
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idUser")
     private Users users;
 
     public Galeria() {
     }
 
-    public Galeria(int idGaleria, String nombreGaleria, boolean visibilidadGaleria, int ratingGaleria) {
+    public Galeria(int idGaleria, String nombreGaleria, boolean visibilidadGaleria, int ratingGaleria, Users users) {
         this.idGaleria = idGaleria;
         this.nombreGaleria = nombreGaleria;
         this.visibilidadGaleria = visibilidadGaleria;
         this.ratingGaleria = ratingGaleria;
+        this.users = users;
     }
 
     public int getIdGaleria() {
@@ -66,5 +67,13 @@ public class Galeria {
 
     public void setRatingGaleria(int ratingGaleria) {
         this.ratingGaleria = ratingGaleria;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }
