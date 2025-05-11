@@ -58,6 +58,7 @@ public class PagoController {
             return m.map(w, PagoDTO.class);
         }).collect(Collectors.toList());
     }
+
     //buscar-id-pago
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -66,6 +67,7 @@ public class PagoController {
         PagoDTO dto = m.map(paS.buscarPagoPorId(id), PagoDTO.class);
         return dto;
     }
+
     //HU-PAG-18
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")

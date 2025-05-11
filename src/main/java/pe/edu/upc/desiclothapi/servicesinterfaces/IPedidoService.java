@@ -11,7 +11,9 @@ public interface IPedidoService {
     //HU-PED-16
     public List<Pedido> listPedido();
 
-    public Pedido buscarPedidoPorId(int id);//buscar-id-pedido
+    //buscar-id-pedido
+    public Pedido buscarPedidoPorId(int id);
+
 
     public void insertPedido(Pedido pe);
 

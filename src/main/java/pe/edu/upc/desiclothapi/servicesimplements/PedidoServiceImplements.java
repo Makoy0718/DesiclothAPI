@@ -23,8 +23,8 @@ public class PedidoServiceImplements implements IPedidoService {
     //buscar-id-pedido
     @Override
     public Pedido buscarPedidoPorId(int id){
-        return pR.findById(id).orElse(new Pedido());
-    }
+        return pR.findById(id).orElse(new Pedido());}
+
     @Override
     public void insertPedido(Pedido pe){ pR.save(pe); }
 

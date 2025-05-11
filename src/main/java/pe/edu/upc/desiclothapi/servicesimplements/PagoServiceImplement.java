@@ -21,6 +21,7 @@ public class PagoServiceImplement implements IPagoService {
     public Pago buscarPagoPorId(int id) {
         return paR.findById(id).orElse(new Pago ());
     }
+
     //HU-PAG-54
     @Override
     public List<Pago> listPago() {return paR.findAll();}
