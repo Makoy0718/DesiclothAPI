@@ -67,7 +67,7 @@ public class CategoriaController {
         }).collect(Collectors.toList());
     }
     //HU-CAT-30
-    @GetMapping("/nombresC")
+    @GetMapping("/buscarPorNombreCategoría")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<CategoriaDTO> buscarCategoriaNombre(@RequestParam String nombreC) {
         return cS.searchCategoria(nombreC).stream().map(y ->{
@@ -79,15 +79,14 @@ public class CategoriaController {
     @GetMapping("/conteoDisenos")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<ConteoCategoriaPorDisenoDTO> obtenerConteoDisenos() {
-        List<ConteoCategoriaPorDisenoDTO> dtoLista = new ArrayList<>();
-        List<String[]> resultados = cS.contarDisenosPorCategoria();
+        return cS.obtenerCantidadDisenosPorCategoria();
+    }
 
-        for(String[] fila : resultados) {
-            ConteoCategoriaPorDisenoDTO dto = new ConteoCategoriaPorDisenoDTO();
-            dto.setNombreCategoria(fila[0]);
-            dto.setCantidadDisenos(Integer.parseInt(fila[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
+    //HU-CAT-35
+    @GetMapping("/{id}")
+    public CategoriaDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        CategoriaDTO dto = m.map(cS.findById(id), CategoriaDTO.class);
+        return dto;
     }
 }

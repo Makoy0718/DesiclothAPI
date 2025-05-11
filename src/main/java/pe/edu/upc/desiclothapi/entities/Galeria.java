@@ -12,7 +12,7 @@ public class Galeria {
     @Column(name = "idGaleria")
     private int idGaleria;
 
-    @Column(name = "nombreGaleria", length = 50, nullable = false)
+    @Column(name = "nombreGaleria", length = 50, nullable = false, unique = true)
     private String nombreGaleria;
 
     @Column(name = "visibilidadGaleria", nullable = false)
