@@ -23,6 +23,17 @@ public class PagoController {
     @Autowired
     private IPagoService paS;
 
+
+    //buscar-id-pago
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public PagoDTO buscarId(@PathVariable int id) {
+        ModelMapper m = new ModelMapper();
+        PagoDTO dto = m.map(paS.buscarPagoPorId(id), PagoDTO.class);
+        return dto;
+    }
+
+
     //HU-PAG-54
     @GetMapping("/listaPago")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
