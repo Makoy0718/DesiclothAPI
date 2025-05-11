@@ -57,7 +57,7 @@ public class UserController {
         uS.updateRole(id, idRole);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/ver/{id}")
     public UserDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         UserDTO dto = m.map(uS.searchById(id), UserDTO.class);

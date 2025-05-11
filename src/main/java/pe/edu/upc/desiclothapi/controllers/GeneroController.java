@@ -45,7 +45,7 @@ public class GeneroController {
         gS.update(g);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/ver/{id}")
     public GeneroDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         GeneroDTO dto = m.map(gS.searchById(id), GeneroDTO.class);
