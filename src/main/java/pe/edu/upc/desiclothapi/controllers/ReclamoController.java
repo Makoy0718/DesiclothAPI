@@ -40,7 +40,7 @@ public class ReclamoController {
     //buscar-id-reclamo
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ReclamoDTO buscarId(int id) {
+    public ReclamoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ReclamoDTO dto = m.map(rS.buscarReclamoPorId(id), ReclamoDTO.class);
         return dto;
