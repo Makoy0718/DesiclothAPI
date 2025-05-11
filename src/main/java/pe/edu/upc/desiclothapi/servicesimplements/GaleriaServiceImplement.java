@@ -26,6 +26,12 @@ public class GaleriaServiceImplement implements IGaleriaService {
         gR.save(g);
     }
 
+    //buscar-id-galeria
+    @Override
+    public Galeria buscarGaleriaPorId(int id) {
+        return gR.findById(id).orElse(new Galeria());
+    }
+
     //HU-GAL--42
     @Override
     public List<Galeria> searchByNombre(String nombre) {

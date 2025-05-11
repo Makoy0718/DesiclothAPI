@@ -56,7 +56,7 @@ public class ReclamoController {
         // Creamos el DTO con la información del reclamo, incluyendo el estado
         return new ReclamoDTO(idReclamo, "Consulta del estado", estado, estado, null);
     }
-
+    
     //HU-REC-09
     @PutMapping("/{idReclamo}/estado")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
