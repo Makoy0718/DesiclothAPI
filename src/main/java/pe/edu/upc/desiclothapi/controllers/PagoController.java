@@ -27,7 +27,7 @@ public class PagoController {
     //buscar-id-pago
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public PagoDTO buscarId(@PathVariable int id) {
+    public PagoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         PagoDTO dto = m.map(paS.buscarPagoPorId(id), PagoDTO.class);
         return dto;
