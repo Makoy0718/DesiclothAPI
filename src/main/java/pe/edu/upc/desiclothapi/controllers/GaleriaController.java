@@ -41,7 +41,8 @@ public class GaleriaController {
 
     //buscar-id-galeria
     @GetMapping("/{id}")
-    public GaleriaDTO buscarGaleriaPorId(@PathVariable("id") int id) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public GaleriaDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         GaleriaDTO dto = m.map(gS.buscarGaleriaPorId(id), GaleriaDTO.class);
         return dto;

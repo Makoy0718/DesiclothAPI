@@ -37,6 +37,15 @@ public class ReclamoController {
         rS.insertReclamos(r);
     }
 
+    //buscar-id-reclamo
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ReclamoDTO buscarId(int id) {
+        ModelMapper m = new ModelMapper();
+        ReclamoDTO dto = m.map(rS.buscarReclamoPorId(id), ReclamoDTO.class);
+        return dto;
+    }
+
     //HU-REC-06
     @GetMapping("/buscarPorTitulo")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
@@ -56,7 +65,7 @@ public class ReclamoController {
         // Creamos el DTO con la información del reclamo, incluyendo el estado
         return new ReclamoDTO(idReclamo, "Consulta del estado", estado, estado, null);
     }
-    
+
     //HU-REC-09
     @PutMapping("/{idReclamo}/estado")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")

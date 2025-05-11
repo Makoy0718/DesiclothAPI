@@ -26,6 +26,11 @@ public class ReclamoServiceImplement implements IReclamoService {
         rR.save(r);
     }
 
+    //buscar-id-reclamo
+    public Reclamo buscarReclamoPorId(int id) {
+        return rR.findById(id).orElse(new Reclamo());
+    }
+
     //HU-REC-05
     @Override
     public List<Reclamo> buscarPorTitulo(String titulo) {
