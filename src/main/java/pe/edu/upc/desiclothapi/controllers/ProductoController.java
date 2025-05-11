@@ -37,6 +37,15 @@ public class ProductoController {
         proS.insertProducto(p);
     }
 
+    //buscar por id
+    @GetMapping("/{id}")
+    public ProductoDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        ProductoDTO dto = m.map(proS.searchbyId(id), ProductoDTO.class);
+        return dto;
+    }
+
+
     //HU-PRO-38 Eliminar un producto del catalogo
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
