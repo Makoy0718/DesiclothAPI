@@ -9,4 +9,5 @@ public interface IGeneroService {
     public void insert(Genero g);
     public void update(Genero g);
     public void delete(int id);
+    public Genero searchById(int id);
 }

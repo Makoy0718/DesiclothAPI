@@ -33,6 +33,11 @@ public class GeneroServiceImplement implements IGeneroService {
 
     @Override
     public void delete(int id) {
-        gR.deleteById((long) id);
+        gR.deleteById(id);
+    }
+
+    @Override
+    public Genero searchById(int id) {
+        return gR.findById(id).orElse(new Genero());
     }
 }

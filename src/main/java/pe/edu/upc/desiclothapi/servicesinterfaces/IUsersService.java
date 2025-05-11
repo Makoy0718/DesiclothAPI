@@ -11,4 +11,5 @@ public interface IUsersService {
     public void update(Users u);
     public void updateRole(int id, int idRole);
     public void delete(int id);
+    public Users searchById(int id);
 }

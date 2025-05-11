@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface IPagoService {
 
+    //buscar-id-pago
+    public Pago buscarPagoPorId(int id);
+
     public void updatePago(Pago p);
     //HU-PAG-54
     public List<Pago> listPago();

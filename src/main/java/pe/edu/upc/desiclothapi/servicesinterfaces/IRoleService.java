@@ -8,6 +8,6 @@ public interface IRoleService {
     public List<Role> list();
     public void insert(Role r);
     public void update(Role r);
-
+    public Role searchById(int id);
     public void delete(int id);
 }

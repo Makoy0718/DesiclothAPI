@@ -39,6 +39,15 @@ public class GaleriaController {
         gS.insertGaleria(g);
     }
 
+    //buscar-id-galeria
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public GaleriaDTO buscarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        GaleriaDTO dto = m.map(gS.buscarGaleriaPorId(id), GaleriaDTO.class);
+        return dto;
+    }
+
     //HU-GAL--42
     @GetMapping("/buscarPorNombre")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")

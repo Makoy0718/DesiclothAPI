@@ -45,6 +45,13 @@ public class GeneroController {
         gS.update(g);
     }
 
+    @GetMapping("/ver/{id}")
+    public GeneroDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        GeneroDTO dto = m.map(gS.searchById(id), GeneroDTO.class);
+        return dto;
+    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
