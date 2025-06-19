@@ -21,7 +21,7 @@ public class ProductoController {
 
     //HU-PRO-36 Visualizar producto disponibles
     @GetMapping("/listaProducto")
-    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    //@PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')") -se COMENTA EL PreAuthorize para hacer las pruebas del FrontEnd
     public List<ProductoDTO> listaProducto() {
         return proS.listProducto().stream().map(x ->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class ProductoController {
     }
 
     @PostMapping("/insertarProducto")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     public void insertarProducto(@RequestBody ProductoDTO dto) {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto,Producto.class);
@@ -48,7 +48,7 @@ public class ProductoController {
 
     //HU-PRO-38 Eliminar un producto del catalogo
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     public void eliminarProducto(@PathVariable("id") int id) { proS.deleteProducto(id); }
 
     //HU-PRO-37 Filtrar producto por tipo o talla
@@ -62,7 +62,7 @@ public class ProductoController {
     }
 
     @GetMapping("/buscartallaProducto")
-    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    //@PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<ProductoDTO> buscarTallaProducto(@RequestParam String tallaProducto) {
         return proS.searchbytallaProducto(tallaProducto).stream().map(z->{
             ModelMapper m = new ModelMapper();
@@ -72,7 +72,7 @@ public class ProductoController {
 
 
     @GetMapping("/precioPromedioPorTalla")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     public List<PrecioPromedioporTallaDTO> precioPromedioPorTalla() {
         return proS.promedioPrecioDiseñoPorTalla().stream().map(fila -> {
             String talla = (String) fila[0];
