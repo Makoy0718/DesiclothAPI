@@ -1,6 +1,6 @@
 package pe.edu.upc.desiclothapi.dtos;
 
-public class ConteoCategoriaPorDisenoDTO {
+public class ConteoDisenosPorCategoriaDTO {
     private String nombreCategoria;
     private int cantidadDisenos;
 

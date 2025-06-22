@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
-import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
+import pe.edu.upc.desiclothapi.dtos.ConteoDisenosPorCategoriaDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
 
@@ -45,11 +45,11 @@ public class CategoriaController {
         cS.updateCategoria(c);
     }
     //HU-CAT-33
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminarCategoria/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminarCategoria(@PathVariable("id") int id) { cS.deleteCategoria(id); }
     //HU-CAT-34-01
-    @GetMapping("/categoriasOrdenAZ")
+    @GetMapping("/OrdenarAZCategoria")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<CategoriaDTO> categoriasOrdenAZ() {
         return cS.ordenarAZ().stream().map(c -> {
@@ -58,7 +58,7 @@ public class CategoriaController {
         }).collect(Collectors.toList());
     }
     //HU-CAT-34-02
-    @GetMapping("/categoriasOrdenZA")
+    @GetMapping("/OrdenarZACategoria")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<CategoriaDTO> categoriasOrdenZA() {
         return cS.ordenarZA().stream().map(c -> {
@@ -67,23 +67,23 @@ public class CategoriaController {
         }).collect(Collectors.toList());
     }
     //HU-CAT-30
-    @GetMapping("/nombresC")
+    @GetMapping("/buscarPorNombreCategoria")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
-    public List<CategoriaDTO> buscarCategoriaNombre(@RequestParam String nombreC) {
-        return cS.searchCategoria(nombreC).stream().map(y ->{
+    public List<CategoriaDTO> buscarPorNombreCategoria(@RequestParam String c) {
+        return cS.buscarPorNombreCategoria(c).stream().map(y ->{
             ModelMapper m = new ModelMapper();
             return m.map(y,CategoriaDTO.class);
         }).collect(Collectors.toList());
     }
     //HU-CAT-54
-    @GetMapping("/conteoDisenos")
+    @GetMapping("/contarDisenosPorCategoria")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<ConteoCategoriaPorDisenoDTO> obtenerConteoDisenos() {
-        List<ConteoCategoriaPorDisenoDTO> dtoLista = new ArrayList<>();
+    public List<ConteoDisenosPorCategoriaDTO> contarDisenosPorCategoria() {
+        List<ConteoDisenosPorCategoriaDTO> dtoLista = new ArrayList<>();
         List<String[]> resultados = cS.contarDisenosPorCategoria();
 
         for(String[] fila : resultados) {
-            ConteoCategoriaPorDisenoDTO dto = new ConteoCategoriaPorDisenoDTO();
+            ConteoDisenosPorCategoriaDTO dto = new ConteoDisenosPorCategoriaDTO();
             dto.setNombreCategoria(fila[0]);
             dto.setCantidadDisenos(Integer.parseInt(fila[1]));
             dtoLista.add(dto);
