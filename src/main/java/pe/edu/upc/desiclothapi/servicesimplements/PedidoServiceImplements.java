@@ -14,6 +14,13 @@ public class PedidoServiceImplements implements IPedidoService {
     @Autowired
     private IPedidoRepository pR;
 
+
+    //buscar-id-pedido
+    @Override
+    public Pedido buscarPedidoPorId(int id){
+        return pR.findById(id).orElse(new Pedido());}
+
+
     //HU-PED-16/HU-PED-16-Escn01
     @Override
     public List<Pedido> listPedido() { return pR.findAll();}

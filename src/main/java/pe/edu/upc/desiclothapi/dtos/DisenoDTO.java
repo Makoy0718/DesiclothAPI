@@ -20,6 +20,23 @@ public class DisenoDTO {
     private Producto producto;
     private Users users;
 
+    public DisenoDTO() {
+    }
+
+    public DisenoDTO(int idDiseno, String imagenDiseno, int precioDiseno, LocalDate fechaOrigenDiseno, String tipoOrigenDiseno, String promtDiseno, String respuestaTextoDiseno, Categoria categoria, Genero genero, Producto producto, Users users) {
+        this.idDiseno = idDiseno;
+        this.imagenDiseno = imagenDiseno;
+        this.precioDiseno = precioDiseno;
+        this.fechaOrigenDiseno = fechaOrigenDiseno;
+        this.tipoOrigenDiseno = tipoOrigenDiseno;
+        this.promtDiseno = promtDiseno;
+        this.respuestaTextoDiseno = respuestaTextoDiseno;
+        this.categoria = categoria;
+        this.genero = genero;
+        this.producto = producto;
+        this.users = users;
+    }
+
     public int getIdDiseno() {
         return idDiseno;
     }

@@ -18,6 +18,9 @@ public class ProductoServiceImplement implements IProductoService {
     public List<Producto> listProducto() { return proR.findAll(); }
 
     @Override
+    public Producto searchbyId(int id) { return proR.findById(id).orElse(new Producto()); }
+
+    @Override
     public void insertProducto(Producto p) {proR.save(p);}
 
     @Override

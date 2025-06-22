@@ -21,7 +21,7 @@ public class Reclamo {
 
     // Relación ManyToOne con Usuario (un usuario puede hacer muchos reclamos)
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idUser")
     private Users users;
 
     public Reclamo() {

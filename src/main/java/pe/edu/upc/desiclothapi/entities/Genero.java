@@ -10,7 +10,7 @@ public class Genero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGenero;
 
-    @Column(name = "nombreGenero", length = 50, nullable = false)
+    @Column(name = "nombreGenero", length = 50, nullable = false, unique = true)
     private String nombreGenero;
 
     @Column(name = "descripcionGenero", length = 50, nullable = false)

@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.repositories.ICategoriaRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
@@ -13,37 +14,48 @@ public class CategoriaServiceImplement implements ICategoriaService {
     @Autowired
     private ICategoriaRepository cR;
 
-    //HU-CAT-29 LISTA TODAS LAS CATEGORIAS
+    //HU-CAT-29
     @Override
     public List<Categoria> listCategoria() {
         return cR.findAll();
     }
-    //HU-CAT-31 INSERTA UNA CATEGORIA
+    //HU-CAT-31
     @Override
     public void insertCategoria(Categoria c) {
         cR.save(c);
     }
-    //HU-CAT-32 MODIFICA UNA CATEGORIA
+    //HU-CAT-32
     @Override
-    public void updateCategoria(Categoria c) { cR.save(c); }
-    //HU-CAT-33 ELIMINA UNA CATEGORIA EN BASE A ID
+    public void updateCategoria(Categoria c) {
+        cR.save(c);
+    }
+    //HU-CAT-33
     @Override
     public void deleteCategoria(int id) { cR.deleteById(id); }
-    //HU-CAT-34-01 ORDENA DE A-Z LAS CATEGORIAS
+    //HU-CAT-34-01
     @Override
     public List<Categoria> ordenarAZ() {
         return cR.ordenarAZ();
     }
-    //HU-CAT-34-02 ORDENA DE Z-A LAS CATEGORIAS
+    //HU-CAT-34-02
     @Override
     public List<Categoria> ordenarZA() {
         return cR.ordenarZA();
     }
-    //HU-CAT-30 BUSCA UNA CATEGORIA POR SU NOMBRE
+    //HU-CAT-30
     @Override
-    public List<Categoria> buscarPorNombreCategoria(String c) { return cR.buscarCategoria(c); }
-    //HU-CAT-54 CUENTA LA CANTIDAD DE DISENOS POR CADA CATEGORIA
+    public List<Categoria> searchCategoria(String nombreC) {
+        return cR.buscarCategoria(nombreC);
+    }
+
     @Override
-    public List<String[]> contarDisenosPorCategoria() {
+    public List<ConteoCategoriaPorDisenoDTO> obtenerCantidadDisenosPorCategoria() {
         return cR.contarDisenosPorCategoria();
-    } }
+    }
+
+
+    @Override
+    public Categoria findById(int id) {
+        return cR.findById(id).orElse(new Categoria());
+    }
+}

@@ -14,6 +14,10 @@ public class CategoriaDTO {
         this.descripcionCategoria = descripcionCategoria;
     }
 
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }

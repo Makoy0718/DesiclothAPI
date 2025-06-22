@@ -37,6 +37,15 @@ public class ReclamoController {
         rS.insertReclamos(r);
     }
 
+    //buscar-id-reclamo
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ReclamoDTO buscarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        ReclamoDTO dto = m.map(rS.buscarReclamoPorId(id), ReclamoDTO.class);
+        return dto;
+    }
+
     //HU-REC-06
     @GetMapping("/buscarPorTitulo")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
