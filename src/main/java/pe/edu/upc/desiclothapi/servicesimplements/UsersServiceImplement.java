@@ -52,4 +52,9 @@ public class UsersServiceImplement implements IUsersService {
         uR.deleteById(id);
     }
 
+    @Override
+    public Users searchById(int id) {
+        return uR.findById(id).orElse(new Users());
+    }
+
 }

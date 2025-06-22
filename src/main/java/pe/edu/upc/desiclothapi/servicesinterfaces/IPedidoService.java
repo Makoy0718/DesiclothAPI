@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface IPedidoService {
 
+
+    public Pedido buscarPedidoPorId(int id);//buscar-id-pedido
+
     //HU-PED-16
     public List<Pedido> listPedido();
 

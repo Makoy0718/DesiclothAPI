@@ -47,6 +47,13 @@ public class RoleController {
         rS.update(r);
     }
 
+    @GetMapping("/ver/{id}")
+    public RoleDTO listarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        RoleDTO dto = m.map(rS.searchById(id), RoleDTO.class);
+        return dto;
+    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {

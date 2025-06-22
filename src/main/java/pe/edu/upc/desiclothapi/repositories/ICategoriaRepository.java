@@ -3,7 +3,6 @@ package pe.edu.upc.desiclothapi.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 
 import java.util.List;
@@ -23,5 +22,5 @@ public interface ICategoriaRepository extends JpaRepository<Categoria, Integer> 
     //--Separandolas por cantidad y nombre de la categoria
     @Query("SELECT d.categoria.nombreCategoria, COUNT(d.idDiseno) " +
             "FROM Diseno d GROUP BY d.categoria.nombreCategoria")
-    List<ConteoCategoriaPorDisenoDTO> contarDisenosPorCategoria();
+    List<String[]> contarDisenosPorCategoria();
 }

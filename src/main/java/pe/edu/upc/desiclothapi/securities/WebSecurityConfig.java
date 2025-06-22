@@ -63,13 +63,19 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
+                        /* COMENTAR ESTAS LINEAS PARA HACER LAS PRUEBAS EN EL FRONTEND
                         .requestMatchers(
+                                //Comento estas lineas para hacer las pruebas
+
                                 "/login",
                                 "/usuarios/registro",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
                         ).permitAll() // Permitir acceso sin autenticación
                         .anyRequest().authenticated()
+                        */
+                        //permitir TODO (sin login/token) para pruebas de frontend(BORRAR LUEGO)
+                        .requestMatchers("/**").permitAll()
                 )
                 .formLogin(AbstractHttpConfigurer::disable) // Deshabilitar login por formulario
                 .exceptionHandling(e -> e

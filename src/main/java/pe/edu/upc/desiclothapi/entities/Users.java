@@ -11,7 +11,7 @@ public class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
-    @Column(name = "username", length = 50, nullable = false)
+    @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
     @Column(name = "correoUser", length = 50, nullable = false)
