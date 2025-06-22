@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
-import pe.edu.upc.desiclothapi.dtos.ConteoDisenosPorCategoriaDTO;
+import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
 
@@ -78,12 +78,12 @@ public class CategoriaController {
     //HU-CAT-54
     @GetMapping("/contarDisenosPorCategoria")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<ConteoDisenosPorCategoriaDTO> contarDisenosPorCategoria() {
-        List<ConteoDisenosPorCategoriaDTO> dtoLista = new ArrayList<>();
+    public List<ConteoCategoriaPorDisenoDTO> contarDisenosPorCategoria() {
+        List<ConteoCategoriaPorDisenoDTO> dtoLista = new ArrayList<>();
         List<String[]> resultados = cS.contarDisenosPorCategoria();
 
         for(String[] fila : resultados) {
-            ConteoDisenosPorCategoriaDTO dto = new ConteoDisenosPorCategoriaDTO();
+            ConteoCategoriaPorDisenoDTO dto = new ConteoCategoriaPorDisenoDTO();
             dto.setNombreCategoria(fila[0]);
             dto.setCantidadDisenos(Integer.parseInt(fila[1]));
             dtoLista.add(dto);
