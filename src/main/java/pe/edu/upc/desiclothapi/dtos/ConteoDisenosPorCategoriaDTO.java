@@ -1,14 +1,14 @@
 package pe.edu.upc.desiclothapi.dtos;
 
-public class ConteoCategoriaPorDisenoDTO {
+public class ConteoDisenosPorCategoriaDTO {
     private int idCategoria;
     private String nombreCategoria;
     private long cantidadDisenos;
 
-    public ConteoCategoriaPorDisenoDTO() {
+    public ConteoDisenosPorCategoriaDTO() {
     }
 
-    public ConteoCategoriaPorDisenoDTO(int idCategoria, String nombreCategoria, long cantidadDisenos) {
+    public ConteoDisenosPorCategoriaDTO(int idCategoria, String nombreCategoria, long cantidadDisenos) {
         this.idCategoria = idCategoria;
         this.nombreCategoria = nombreCategoria;
         this.cantidadDisenos = cantidadDisenos;
