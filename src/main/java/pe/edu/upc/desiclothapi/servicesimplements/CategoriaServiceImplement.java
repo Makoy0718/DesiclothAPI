@@ -2,6 +2,7 @@ package pe.edu.upc.desiclothapi.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.repositories.ICategoriaRepository;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
@@ -44,6 +45,6 @@ public class CategoriaServiceImplement implements ICategoriaService {
     public List<Categoria> buscarPorNombreCategoria(String c) { return cR.buscarCategoria(c); }
     //HU-CAT-54 CUENTA LA CANTIDAD DE DISENOS POR CADA CATEGORIA
     @Override
-    public List<String[]> contarDisenosPorCategoria() {
+    public List<ConteoCategoriaPorDisenoDTO> contarDisenosPorCategoria() {
         return cR.contarDisenosPorCategoria();
     } }
