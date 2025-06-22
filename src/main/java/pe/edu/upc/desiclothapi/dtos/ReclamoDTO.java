@@ -9,6 +9,9 @@ public class ReclamoDTO {
     private String estado;
     private Users users;
 
+    public ReclamoDTO() {
+    }
+
     public ReclamoDTO(int idReclamo, String titulo, String descripcion, String estado, Users users) {
         this.idReclamo = idReclamo;
         this.titulo = titulo;

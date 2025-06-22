@@ -1,6 +1,5 @@
 package pe.edu.upc.desiclothapi.servicesinterfaces;
 
-import pe.edu.upc.desiclothapi.dtos.ConteoCategoriaPorDisenoDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 
 import java.util.List;
@@ -12,7 +11,6 @@ public interface ICategoriaService {
     public void deleteCategoria(int id); //HU-CAT-33
     List<Categoria> ordenarAZ(); //HU-CAT-34-01
     List<Categoria> ordenarZA(); //HU-CAT-34-02
-    public List<Categoria> searchCategoria(String nombreC); //HU-CAT-30
-    public List<ConteoCategoriaPorDisenoDTO> obtenerCantidadDisenosPorCategoria(); //HU-CAT-54
-    public Categoria findById(int id);
+    public List<Categoria> buscarPorNombreCategoria(String c); //HU-CAT-30
+    public List<String[]> contarDisenosPorCategoria(); //HU-CAT-54
 }
