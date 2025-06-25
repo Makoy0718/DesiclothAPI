@@ -116,9 +116,9 @@ public class DisenoController {
         }).collect(Collectors.toList());
     }
     //HU-DIS-24
-    @GetMapping("/detallarDiseno")
+    @GetMapping("/verDiseno/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
-    public DisenoDTO detalleDiseno(@RequestParam int id) {
+    public DisenoDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         return m.map(dS.findById(id), DisenoDTO.class);
     }

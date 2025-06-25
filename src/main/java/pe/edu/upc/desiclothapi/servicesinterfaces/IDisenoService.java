@@ -1,6 +1,7 @@
 package pe.edu.upc.desiclothapi.servicesinterfaces;
 
 import pe.edu.upc.desiclothapi.entities.Diseno;
+import pe.edu.upc.desiclothapi.entities.Role;
 
 import java.util.List;
 

@@ -20,7 +20,7 @@ public class RoleController {
     private IRoleService rS;
 
 
-    @GetMapping("/lista")
+    @GetMapping("/listarRol")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<RoleDTO> listar() {
         return rS.list().stream().map(w -> {
@@ -47,7 +47,7 @@ public class RoleController {
         rS.update(r);
     }
 
-    @GetMapping("/ver/{id}")
+    @GetMapping("/verRol/{id}")
     public RoleDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         RoleDTO dto = m.map(rS.searchById(id), RoleDTO.class);
