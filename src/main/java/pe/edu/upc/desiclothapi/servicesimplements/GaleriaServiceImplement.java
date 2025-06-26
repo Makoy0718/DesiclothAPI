@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class GaleriaServiceImplement implements IGaleriaService {
 
+
     @Autowired
     private IGaleriaRepository gR;
 
@@ -25,6 +26,13 @@ public class GaleriaServiceImplement implements IGaleriaService {
     public void insertGaleria(Galeria g) {
         gR.save(g);
     }
+
+    @Override
+    public void updateGaleria(Galeria g) { gR.save(g); }
+
+    @Override
+    public void deleteGaleria(int id) {gR.findAll();}
+
 
     //buscar-id-galeria
     @Override
