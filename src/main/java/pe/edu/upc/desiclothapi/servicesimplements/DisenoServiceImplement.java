@@ -17,15 +17,24 @@ public class DisenoServiceImplement implements IDisenoService {
     //HU-DIS-20 INSERTAR DISENO
     @Override
     public void insertDiseno(Diseno d) { dR.save(d); }
+
+
     //HU-DIS-# ACTUALIZAR DISENO
     @Override
     public void updateDiseno(Diseno d) { dR.save(d); }
+
+
     //HU-DIS-25 LISTAR TODOS LOS DISENOS
     @Override
     public List<Diseno> listDiseno() { return dR.findAll(); }
+
+
     //HU-DIS-28 ELIMINAR DISENO EN BASE A ID
     @Override
     public void deleteDiseno(int id) { dR.deleteById(id); }
+
+
+
     //HU-DIS-21 FILTRAR LOS DISENOS EN BASE AL GENERO Y A LA CATEGORIA
     @Override
     public List<Diseno> searchByGeneroYCategoria(int idGenero, int idCategoria) {
