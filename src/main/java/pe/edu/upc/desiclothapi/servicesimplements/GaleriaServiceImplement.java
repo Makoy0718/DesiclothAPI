@@ -31,7 +31,7 @@ public class GaleriaServiceImplement implements IGaleriaService {
     public void updateGaleria(Galeria g) { gR.save(g); }
 
     @Override
-    public void deleteGaleria(int id) {gR.findAll();}
+    public void deleteGaleria(int id) {gR.deleteById(id);}
 
 
     //buscar-id-galeria
