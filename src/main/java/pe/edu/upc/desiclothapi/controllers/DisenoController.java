@@ -61,10 +61,10 @@ public class DisenoController {
     //HU-DIS-20
     @PostMapping("/insertarDiseno")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void insertarDiseno(@RequestBody DisenoDTO dto) {
+    public Diseno insertarDiseno(@RequestBody DisenoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diseno d = m.map(dto, Diseno.class);
-        dS.insertDiseno(d);
+        return dS.insertDiseno(d);
     }
     //HU-DIS-#
     @PutMapping("/modificarDiseno")
@@ -168,6 +168,15 @@ public class DisenoController {
             String origen = (String) fila[1];
             Long cantidad = (Long) fila[2];
             return new ConteoDisenoCategoriaOrigenDTO(categoria, origen, cantidad);
+        }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/buscarPorIDUserDiseno")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public List<DisenoDTO> buscarPorIdUser(@RequestParam int idUser) {
+        return dS.findByUserId(idUser).stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
 }

@@ -20,7 +20,7 @@ public class CategoriaController {
 
     //HU-CAT-29
     @GetMapping("/listarCategoria")
-    //@PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<Categoria> listaCategoria() {
         return cS.listCategoria().stream().map(w->{
             ModelMapper m = new ModelMapper();
@@ -29,7 +29,7 @@ public class CategoriaController {
     }
     //HU-CAT-31
     @PostMapping("/insertarCategoria")
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertarCategoria(@RequestBody CategoriaDTO dto) {
         ModelMapper m = new ModelMapper();
         Categoria c = m.map(dto, Categoria.class);
@@ -37,7 +37,7 @@ public class CategoriaController {
     }
     //HU-CAT-32
     @PutMapping("/modificarCategoria")
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificarCategoria(@RequestBody CategoriaDTO dto) {
         ModelMapper m = new ModelMapper();
         Categoria c = m.map(dto, Categoria.class);
@@ -45,7 +45,7 @@ public class CategoriaController {
     }
     //HU-CAT-33
     @DeleteMapping("/eliminarCategoria/{id}")
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminarCategoria(@PathVariable("id") int id) { cS.deleteCategoria(id); }
 
     //HU-CAT-34-01

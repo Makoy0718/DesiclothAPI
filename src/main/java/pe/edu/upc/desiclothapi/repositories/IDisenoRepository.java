@@ -46,4 +46,8 @@ public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     @Query("SELECT d.categoria.nombreCategoria, d.tipoOrigenDiseno, COUNT(d) " +
             "FROM Diseno d GROUP BY d.categoria.nombreCategoria, d.tipoOrigenDiseno")
     List<Object[]> contarDisenosPorCategoriaYOrigen();
+
+    //Muestra todos los disenos en base al id del usuario
+    @Query("SELECT d FROM Diseno  d WHERE d.users.idUser = :idUser")
+    public List<Diseno> buscarDisenosPorUser(@Param("idUser") int idUser);
 }
