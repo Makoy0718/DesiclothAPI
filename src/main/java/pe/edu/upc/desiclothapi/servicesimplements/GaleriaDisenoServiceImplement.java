@@ -19,7 +19,10 @@ public class GaleriaDisenoServiceImplement implements IGaleriaDisenoService {
 
     //HU-GADI-# INSERTA UNA CONEXION ENTRE UN DISENO Y UNA GALERIA CON COMENTARIO
     @Override
-    public void insertGaleriaDiseno(GaleriaDiseno gd) { gdR.save(gd); }
+    public void insertGaleriaDiseno(GaleriaDiseno gd) {
+        System.out.println("Mi galeriaDiseno es " + gd);
+        gdR.save(gd);
+    }
 
     //HU-GADI-# MODIFICA UNA CONEXION ENTRE UN DISENO Y UNA GALERIA CON COMENTARIO
     @Override

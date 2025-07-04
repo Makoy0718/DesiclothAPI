@@ -74,4 +74,10 @@ public class GaleriaServiceImplement implements IGaleriaService {
     public List<String[]> getTotalGaleriasConIA() {
         return gR.getTotalGaleriasConIA();
     }
+
+    @Override
+    public List<Galeria> searchByNombreUsuario(String nombre) {
+        System.out.println("Buscando galerías del usuario: " + nombre);
+        return gR.buscarGaleriaPorUsuario(nombre);
+    }
 }

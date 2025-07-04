@@ -58,8 +58,9 @@ public class UsersServiceImplement implements IUsersService {
     }
 
     @Override
-    public List<Users> searchByUsername(String nombre) {
-        return uR.buscarUsername(nombre);
+    public Users searchByUsername(String nombre) {
+        System.out.println("Buscando usuario por nombre: " + nombre);
+        return uR.buscarPorNombreUsuario(nombre);
     }
 
 }

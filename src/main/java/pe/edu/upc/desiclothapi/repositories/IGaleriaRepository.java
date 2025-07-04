@@ -25,4 +25,9 @@ public interface IGaleriaRepository extends JpaRepository<Galeria, Integer> {
             " join galeriaDiseno gd on d.id = gd.idDiseno\n" +
             " where d.tipoOrigenDiseno = 'IA'", nativeQuery = true)
     List<String[]> getTotalGaleriasConIA();
+
+    //Listar Galerias en base a username
+    @Query("select g from Galeria g where g.users.username = :nombre")
+    List<Galeria> buscarGaleriaPorUsuario(@Param("nombre") String nombre);
+
 }

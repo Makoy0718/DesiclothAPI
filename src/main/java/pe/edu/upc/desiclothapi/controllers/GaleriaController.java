@@ -118,4 +118,12 @@ public class GaleriaController {
         return dtoLista;
     }
 
+    @GetMapping("/buscarPorNombreUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public List<GaleriaDTO> buscarPorNombreUsuario(@RequestParam String nombre) {
+        return gS.searchByNombreUsuario(nombre).stream().map(y -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(y, GaleriaDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

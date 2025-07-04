@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
 import pe.edu.upc.desiclothapi.dtos.UserDTO;
 import pe.edu.upc.desiclothapi.dtos.UserResponseDTO;
 import pe.edu.upc.desiclothapi.entities.Users;
@@ -23,7 +22,7 @@ public class UserController {
     private IUsersService uS;
 
 
-    @GetMapping("/listarUsuarios")
+    @GetMapping("/verUsuarios")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public List<UserResponseDTO> listar() {
         return uS.list().stream().map(w -> {
@@ -32,7 +31,7 @@ public class UserController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/insertarUsuario")
+    @PostMapping("/registro")
     public ResponseEntity<UserResponseDTO> insertar(@RequestBody UserDTO dto) {
         if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
             throw new IllegalArgumentException("La contraseña no puede estar vacía");
@@ -44,7 +43,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PutMapping("/modificarUsuario")
+    @PutMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -58,7 +57,7 @@ public class UserController {
         uS.updateRole(id, idRole);
     }
 
-    @GetMapping("/buscarUsuario/{id}")
+    @GetMapping("/ver/{id}")
     public UserDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         UserDTO dto = m.map(uS.searchById(id), UserDTO.class);
@@ -66,18 +65,17 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/eliminarUsuario/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         uS.delete(id);
     }
 
-    @GetMapping("/buscarPorUsername")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public List<UserResponseDTO> buscarUsername(@RequestParam String nombre) {
-        return uS.searchByUsername(nombre).stream().map(y ->{
-            ModelMapper m = new ModelMapper();
-            return m.map(y,UserResponseDTO.class);
-        }).collect(Collectors.toList());
+    @GetMapping("/buscarPorNombreUsuario/{nombre}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public UserDTO buscarPorUsername(@PathVariable("nombre") String nombre) {
+        ModelMapper m = new ModelMapper();
+        UserDTO dto = m.map(uS.searchByUsername(nombre), UserDTO.class);
+        return dto;
     }
 }

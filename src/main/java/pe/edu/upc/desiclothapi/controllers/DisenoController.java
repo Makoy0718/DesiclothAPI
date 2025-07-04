@@ -60,7 +60,7 @@ public class DisenoController {
 
     //HU-DIS-20
     @PostMapping("/insertarDiseno")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public Diseno insertarDiseno(@RequestBody DisenoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diseno d = m.map(dto, Diseno.class);

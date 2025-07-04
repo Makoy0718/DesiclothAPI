@@ -12,5 +12,5 @@ public interface IUsersService {
     public void updateRole(int id, int idRole);
     public void delete(int id);
     public Users searchById(int id);
-    public List<Users> searchByUsername(String nombre);
+    public Users searchByUsername(String username);
 }
