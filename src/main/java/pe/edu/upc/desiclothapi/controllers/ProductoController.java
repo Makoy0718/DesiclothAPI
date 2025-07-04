@@ -5,8 +5,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.desiclothapi.dtos.PedidoDTO;
 import pe.edu.upc.desiclothapi.dtos.PrecioPromedioporTallaDTO;
 import pe.edu.upc.desiclothapi.dtos.ProductoDTO;
+import pe.edu.upc.desiclothapi.entities.Pedido;
 import pe.edu.upc.desiclothapi.entities.Producto;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IProductoService;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class ProductoController {
     @Autowired
     private IProductoService proS;
+
+
 
     //HU-PRO-36 Visualizar producto disponibles
     @GetMapping("/listaProducto")

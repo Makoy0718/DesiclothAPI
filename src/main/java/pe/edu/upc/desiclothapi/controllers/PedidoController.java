@@ -14,21 +14,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/Pedidos")
 public class PedidoController {
     @Autowired
     private IPedidoService pS;
 
-
-    //buscar-id-pedido
-    @GetMapping("/{id}")
+    //listar -modificar -insertar -eliminarPedido/{id}
+    @PostMapping("/insertarPedido")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public PedidoDTO buscarId(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        PedidoDTO dto = m.map(pS.buscarPedidoPorId(id), PedidoDTO.class);
-        return dto;
+    public void insertarPedido(@RequestBody PedidoDTO dto) {
+        ModelMapper m=new ModelMapper();
+        Pedido p = m.map(dto, Pedido.class);
+        pS.insertPedido(p);
     }
-
+    //se AGREGO al backend
+    @PutMapping("/modificarPedido")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void modificarPedido(@RequestBody PedidoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Pedido p = m.map(dto, Pedido.class);
+        pS.updatePedido(p);
+    }
     //HU-PED-16
     @GetMapping("/listarPedido")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
@@ -38,14 +44,30 @@ public class PedidoController {
             return m.map(w, PedidoDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping("/insertarPedido")
+    //se AGREGO al backend
+    @DeleteMapping("/eliminarPedido/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void insertarPedido(@RequestBody PedidoDTO dto) {
-        ModelMapper m=new ModelMapper();
-        Pedido p = m.map(dto, Pedido.class);
-        pS.insertPedido(p);
-
+    public void eliminarPedido(@PathVariable("id") int id)
+    {
+        pS.deletePedido(id);
     }
+    //Buscar-id-pedido,decia buscarId lo cambie a listarId/buscar por Id=>findById
+    @GetMapping("/buscarPedido/{id}")
+    public PedidoDTO buscarPedido(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        PedidoDTO dto = m.map(pS.findById(id),PedidoDTO.class);
+        return dto;
+    }
+
+    /*
+    //buscar-id-pedido
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public PedidoDTO buscarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        PedidoDTO dto = m.map(pS.buscarPedidoPorId(id), PedidoDTO.class);
+        return dto;
+    }*/
 
     @GetMapping("/buscarPorFecha")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
@@ -61,6 +83,5 @@ public class PedidoController {
     public Boolean obtenerEstado(@PathVariable("id")int idPedido) {
         return pS.obtenerEstadoPorId(idPedido);
     }
-
 
 }
