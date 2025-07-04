@@ -18,32 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/pagos")
+@RequestMapping("/Pagos")
 public class PagoController {
     @Autowired
     private IPagoService paS;
 
 
-    //buscar-id-pago
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public PagoDTO buscarId(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        PagoDTO dto = m.map(paS.buscarPagoPorId(id), PagoDTO.class);
-        return dto;
-    }
-
-
-    //HU-PAG-54
-    @GetMapping("/listaPago")
-    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
-    public List<PagoDTO> listarPago() {
-        return paS.listPago().stream().map(w -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(w, PagoDTO.class);
-        }).collect(Collectors.toList());
-    }
-    //Insertar-HU-PAG-17
+    //Insertar-HU-PAG-17****
     @PostMapping("/insertarPago")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertPago(@RequestBody PagoDTO p) {
@@ -52,14 +33,44 @@ public class PagoController {
         paS.insertPago(pago) ;
     }
 
-    //ActualizarPago
-    @PutMapping("/actualizarPago")
+    //ActualizarPago****
+    @PutMapping("/modificarPago")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void actualizarPago(@RequestBody PagoDTO p) {
         ModelMapper m = new ModelMapper();
         Pago pa = m.map(p, Pago.class);
         paS.updatePago(pa);
     }
+
+    //HU-PAG-54*****
+    @GetMapping("/listarPago")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public List<PagoDTO> listarPago() {
+        return paS.listPago().stream().map(w -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(w, PagoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    //HU-PAG-18
+    @DeleteMapping("/eliminarPago/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void eliminarPago(@PathVariable("id") int id)
+    {paS.deletePago(id);}
+
+
+
+
+    //buscar-id-pago
+    @GetMapping("/buscarPago/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public PagoDTO buscarId(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        PagoDTO dto = m.map(paS.buscarPagoPorId(id), PagoDTO.class);
+        return dto;
+    }
+
+
     //HU-PAG-15
     @GetMapping("/buscarPorUsuario")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
@@ -69,10 +80,6 @@ public class PagoController {
             return m.map(w, PagoDTO.class);
         }).collect(Collectors.toList());
     }
-    //HU-PAG-18
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void eliminarPago(@PathVariable int id) {paS.deletePago(id);}
 
     //HU-PAG-55
     @GetMapping("/buscarPorMetodo")

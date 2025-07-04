@@ -14,20 +14,35 @@ public class PedidoServiceImplements implements IPedidoService {
     @Autowired
     private IPedidoRepository pR;
 
-
-    //buscar-id-pedido
+    //HU-PED-Insertar Diseño
     @Override
-    public Pedido buscarPedidoPorId(int id){
-        return pR.findById(id).orElse(new Pedido());}
+    public void insertPedido(Pedido pe) {
+        pR.save(pe);
+    }
 
-
-    //HU-PED-16/HU-PED-16-Escn01
+    //se agrego de modificar(actualizar Pedido
     @Override
-    public List<Pedido> listPedido() { return pR.findAll();}
+    public void updatePedido(Pedido pe) {
+        pR.save(pe);
+    }
 
-
+    //listar todos los pedidos.HU-PED-16/HU-PED-16-Escn01
     @Override
-    public void insertPedido(Pedido pe){ pR.save(pe); }
+    public List<Pedido> listPedido() {
+        return pR.findAll();
+    }
+
+    //HU-PED-Eliminar Pedido
+    @Override
+    public void deletePedido(int id) {
+        pR.deleteById(id);
+    }
+
+    //Buscar-id-pedido-buscar un pedido en base al id
+    @Override
+    public Pedido findById(int id) {
+        return pR.findById(id).orElse(new Pedido());
+    }
 
     @Override
     public List<Pedido> buscarPorFechaPedido(LocalDate fecha) {
@@ -35,11 +50,17 @@ public class PedidoServiceImplements implements IPedidoService {
     }
 
     @Override
-    public Boolean obtenerEstadoPorId(int idPedido){
+    public Boolean obtenerEstadoPorId(int idPedido) {
         return pR.obtenerEstadoPorId(idPedido);
     }
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+

@@ -16,6 +16,24 @@ public class PagoServiceImplement implements IPagoService {
     @Autowired
     private IPagoRepository paR;
 
+    //HU-PAG-17
+    @Override
+    public void insertPago (Pago pa) { paR.save(pa); }
+
+    //update
+    @Override
+    public void updatePago(Pago pa) {
+        paR.save(pa);
+    }
+
+    //HU-PAG-54
+    @Override
+    public List<Pago> listPago() {return paR.findAll();}
+
+    //HU-PAG-18
+    @Override
+    public void deletePago(int id) { paR.deleteById(id); }
+
 
     //buscar-id-pago
     @Override
@@ -24,18 +42,6 @@ public class PagoServiceImplement implements IPagoService {
     }
 
 
-
-    //HU-PAG-54
-    @Override
-    public List<Pago> listPago() {return paR.findAll();}
-
-    //HU-PAG-17
-    @Override
-    public void insertPago (Pago pa) { paR.save(pa); }
-
-    //HU-PAG-18
-    @Override
-    public void deletePago(int id) { paR.deleteById(id); }
 
     //HU-PAG-15
     @Override
@@ -54,11 +60,7 @@ public class PagoServiceImplement implements IPagoService {
     public List<Pago> buscarPorFechaPago(LocalDate fecha) {
         return paR.buscarPorFecha(fecha);
     }
-    //update
-    @Override
-    public void updatePago(Pago pa) {
-        paR.save(pa);
-    }
+
 
     //HU-PAG-57
     @Override

@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Pedido")
 public class Pedido {
-
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int idPedido;
@@ -20,6 +19,7 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "idUser")
     private Users users;
+
 
     public Pedido() {
     }
@@ -55,11 +55,12 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }
 
-    public Users getUser() {
-        return users;
-    }
+  //  public Users getUser() {return users; }
 
-    public void setUser(Users users) {
-        this.users = users;
-    }
+ //   public void setUser(Users users) { this.users = users;    }
+
+
+    public Users getUsers() {return users;}
+
+    public void setUsers(Users users) {this.users = users;}
 }

@@ -12,6 +12,18 @@ public class PagoDTO {
     private LocalDate fechaPago;
     private Pedido pedido;
 
+    public PagoDTO() {
+    }
+
+    public PagoDTO(LocalDate fechaPago, Double montoPago, String metodoPago, int idPago, String comprobantePago, Pedido pedido) {
+        this.fechaPago = fechaPago;
+        this.montoPago = montoPago;
+        this.metodoPago = metodoPago;
+        this.idPago = idPago;
+        this.comprobantePago = comprobantePago;
+        this.pedido = pedido;
+    }
+
     public int getIdPago() {
         return idPago;
     }
