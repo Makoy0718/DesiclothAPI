@@ -5,7 +5,7 @@ import pe.edu.upc.desiclothapi.entities.Diseno;
 import java.util.List;
 
 public interface IDisenoService {
-    public void insertDiseno(Diseno d); //HU-DIS-20
+    public Diseno insertDiseno(Diseno d); //HU-DIS-20
     public void updateDiseno(Diseno d); //HU-DIS-#
     public List<Diseno> listDiseno(); //HU-DIS-25
     public void deleteDiseno(int id); //HU-DIS-28
@@ -18,4 +18,5 @@ public interface IDisenoService {
     List<Diseno> findByGeneroNombre(String n); //HU-GEN-39
     List<Object[]> comparePreciosByOrigen(); //HU-DIS-26
     List<Object[]> countDisenosByCategoriaYOrigen(); //HU-DIS-27
+    List<Diseno> findByUserId(int idUser);
 }

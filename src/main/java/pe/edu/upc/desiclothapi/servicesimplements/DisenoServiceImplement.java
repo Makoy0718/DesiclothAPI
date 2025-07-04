@@ -16,7 +16,7 @@ public class DisenoServiceImplement implements IDisenoService {
     private IDisenoRepository dR;
     //HU-DIS-20 INSERTAR DISENO
     @Override
-    public void insertDiseno(Diseno d) { dR.save(d); }
+    public Diseno insertDiseno(Diseno d) { return dR.save(d); }
 
 
     //HU-DIS-# ACTUALIZAR DISENO
@@ -82,4 +82,7 @@ public class DisenoServiceImplement implements IDisenoService {
     public List<Object[]> countDisenosByCategoriaYOrigen() {
         return dR.contarDisenosPorCategoriaYOrigen();
     }
+
+    @Override
+    public List<Diseno> findByUserId(int idUser) {return dR.buscarDisenosPorUser(idUser);}
 }

@@ -31,7 +31,7 @@ public class GaleriaServiceImplement implements IGaleriaService {
     public void updateGaleria(Galeria g) { gR.save(g); }
 
     @Override
-    public void deleteGaleria(int id) {gR.findAll();}
+    public void deleteGaleria(int id) {gR.deleteById(id);}
 
 
     //buscar-id-galeria
@@ -73,5 +73,11 @@ public class GaleriaServiceImplement implements IGaleriaService {
     @Override
     public List<String[]> getTotalGaleriasConIA() {
         return gR.getTotalGaleriasConIA();
+    }
+
+    @Override
+    public List<Galeria> searchByNombreUsuario(String nombre) {
+        System.out.println("Buscando galerías del usuario: " + nombre);
+        return gR.buscarGaleriaPorUsuario(nombre);
     }
 }

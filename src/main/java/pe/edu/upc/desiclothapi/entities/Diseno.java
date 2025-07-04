@@ -11,7 +11,7 @@ public class Diseno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDiseno;
 
-    @Column(name = "imagenDiseno",length = 100,nullable = false)
+    @Column(name = "imagenDiseno",nullable = false, columnDefinition = "TEXT")
     private String imagenDiseno;
 
     @Column(name = "precioDiseno",nullable = false)
@@ -23,10 +23,10 @@ public class Diseno {
     @Column(name = "tipoOrigenDiseno", length = 20,nullable = false)
     private String tipoOrigenDiseno;
 
-    @Column(name = "promtDiseno",length = 100,nullable = true)
+    @Column(name = "promtDiseno",nullable = true, columnDefinition = "TEXT")
     private String promtDiseno;
 
-    @Column(name = "respuestaTextoDiseno",length = 100,nullable = true)
+    @Column(name = "respuestaTextoDiseno",nullable = true, columnDefinition = "TEXT")
     private String respuestaTextoDiseno;
 
     @ManyToOne
@@ -37,7 +37,7 @@ public class Diseno {
     @JoinColumn(name = "idGenero")
     private Genero genero;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idProducto")
     private Producto producto;
 

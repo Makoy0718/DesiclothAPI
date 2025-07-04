@@ -12,6 +12,6 @@ public interface IUsersRepository extends JpaRepository<Users, Integer> {
     public Users findOneByUsername(String username);
 
     //BUSCAR POR NOMBRE
-    @Query("select count(u.username) from Users u where u.username =:username")
-    public int buscarUsername(@Param("username") String nombre);
+    @Query("SELECT u FROM Users u WHERE u.username = :nombre")
+    Users buscarPorNombreUsuario(@Param("nombre") String nombre);
 }

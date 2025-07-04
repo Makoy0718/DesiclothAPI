@@ -71,4 +71,11 @@ public class UserController {
         uS.delete(id);
     }
 
+    @GetMapping("/buscarPorNombreUsuario/{nombre}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public UserDTO buscarPorUsername(@PathVariable("nombre") String nombre) {
+        ModelMapper m = new ModelMapper();
+        UserDTO dto = m.map(uS.searchByUsername(nombre), UserDTO.class);
+        return dto;
+    }
 }

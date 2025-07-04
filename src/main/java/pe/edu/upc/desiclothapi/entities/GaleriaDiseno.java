@@ -12,11 +12,11 @@ public class GaleriaDiseno {
     private int idGaleriaDiseno;
 
     @ManyToOne
-    @JoinColumn(name = "idGaleria", nullable = false)
+    @JoinColumn(name = "idGaleria")
     private Galeria galeria;
 
     @ManyToOne
-    @JoinColumn(name = "idDiseno", nullable = false)
+    @JoinColumn(name = "idDiseno")
     private Diseno diseno;
 
     @Column(name = "comentarios", length = 100, nullable = false)
