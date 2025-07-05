@@ -84,7 +84,7 @@ public class GaleriaController {
 
     //HU-GAL--44
     @PostMapping("/{idGaleria}/valorar")
-    //@PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public String valorarGaleria(@PathVariable int idGaleria, @RequestParam int rating) {
         gS.valorarGaleria(idGaleria, rating);
         return "Galería valorada con éxito.";
