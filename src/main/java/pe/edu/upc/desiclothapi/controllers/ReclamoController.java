@@ -37,7 +37,7 @@ public class ReclamoController {
         rS.insertReclamos(r);
     }
     @PutMapping("/modificarReclamo")
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificarReclamo(@RequestBody ReclamoDTO dto) {
         ModelMapper m = new ModelMapper();
         Reclamo r = m.map(dto, Reclamo.class);
@@ -45,7 +45,7 @@ public class ReclamoController {
     }
 
     @DeleteMapping("/eliminarReclamo/{id}")
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminarReclamo(@PathVariable int id) { rS.deleteReclamos(id);}
 
 
