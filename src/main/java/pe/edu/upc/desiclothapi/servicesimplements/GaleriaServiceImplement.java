@@ -71,8 +71,13 @@ public class GaleriaServiceImplement implements IGaleriaService {
     }
 
     @Override
-    public List<String[]> getTotalGaleriasConIA() {
+    public int getTotalGaleriasConIA() {
         return gR.getTotalGaleriasConIA();
+    }
+
+    @Override
+    public int getTotalGalerias() {
+        return gR.findAll().size();
     }
 
     @Override

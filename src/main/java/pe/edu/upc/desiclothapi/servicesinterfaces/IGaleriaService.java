@@ -17,6 +17,7 @@ public interface IGaleriaService {
     public Galeria cambiarVisibilidadGaleria(int idGaleria, boolean visibilidad);//HU-GAL--43
     public void valorarGaleria(int idGaleria, int rating);//HU-GAL--44
     public Double obtenerPromedioRatingGaleria(int idGaleria);//HU-GAL--47
-    public List<String[]> getTotalGaleriasConIA();
+    public int getTotalGaleriasConIA();
+    public int getTotalGalerias();
     public List<Galeria> searchByNombreUsuario(String nombre);
 }
