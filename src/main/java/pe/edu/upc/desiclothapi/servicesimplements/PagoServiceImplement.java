@@ -20,6 +20,12 @@ public class PagoServiceImplement implements IPagoService {
     @Override
     public void insertPago (Pago pa) { paR.save(pa); }
 
+    //*********eliminar
+    @Override
+    public List<Pago> searchByUsuario(int idUser) {
+        return List.of();
+    }
+
     //update
     @Override
     public void updatePago(Pago pa) {
@@ -43,11 +49,6 @@ public class PagoServiceImplement implements IPagoService {
 
 
 
-    //HU-PAG-15
-    @Override
-    public List<Pago>searchByUsuario(int idUser){
-        return paR.buscarPagosPorUsuario(idUser);
-    }
 
     //HU-PAG-55
     @Override
@@ -61,15 +62,35 @@ public class PagoServiceImplement implements IPagoService {
         return paR.buscarPorFecha(fecha);
     }
 
-
-    //HU-PAG-57
+    //*****eliminar
     @Override
-    public List<Pago> buscarPagosPorUsuarioYFecha ( int idUser, LocalDate fecha) {
-        return paR.buscarPagosPorUsuarioYFecha(idUser, fecha);
+    public List<Pago> buscarPagosPorUsuarioYFecha(int idUser, LocalDate fecha) {
+        return List.of();
     }
+
+
     //HU-PAG-58
+    //@Override
+    //public List<Object[]> obtenerTotalPagosPorUsuario(){
+        //return paR.obtenerTotalPagoPorUsuario();
+    //}
+
+    //para la querys-top 5 pagos mas altos
     @Override
-    public List<Object[]> obtenerTotalPagosPorUsuario(){
-        return paR.obtenerTotalPagoPorUsuario();
+    public List<Pago> obtenerTop5Pagos(){
+        return paR.obtenerTop5pagos();
+    }
+
+    //QUERY para ver el total de pago por usuario
+    @Override
+    public List<UsuarioMontoDTO> obtenerTotalPagosPorUsuario() {
+        List<Object[]> lista = paR.obtenerTotalPagoPorUsuario();
+        List<UsuarioMontoDTO> listaDTO = new ArrayList<>();
+        for (Object[] obj : lista) {
+            String nombreUsuario = (String) obj[0];
+            Double totalPagado = (Double) obj[1];
+            listaDTO.add(new UsuarioMontoDTO(nombreUsuario, totalPagado));
+        }
+        return listaDTO;
     }
 }

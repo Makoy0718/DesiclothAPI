@@ -10,6 +10,9 @@ public class UsuarioMontoDTO {
         this.totalPagado = totalPagado;
     }
 
+    public UsuarioMontoDTO() {
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
