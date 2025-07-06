@@ -50,4 +50,10 @@ public class GaleriaDisenoController {
     @DeleteMapping("/eliminarGaleriaDiseno/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public void eliminarGaleriaDiseno(@PathVariable("id") int id) { gdS.deleteGaleriaDiseno(id); }
+
+    @DeleteMapping("/eliminarPorDiseno/{idDiseno}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public void eliminarPorIdDiseno(@PathVariable("idDiseno") int idDiseno) {
+        gdS.deleteByDisenoId(idDiseno);
+    }
 }

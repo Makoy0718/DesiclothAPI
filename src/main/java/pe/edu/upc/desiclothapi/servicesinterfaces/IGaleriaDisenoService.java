@@ -10,4 +10,5 @@ public interface IGaleriaDisenoService {
     public void insertGaleriaDiseno(GaleriaDiseno gd); //HU-GADI-#
     public void updateGaleriaDiseno(GaleriaDiseno gd); //HU-GADI-#
     public void deleteGaleriaDiseno(int id); //HU-GADI-#
+    public void deleteByDisenoId(int idDiseno);
 }

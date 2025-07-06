@@ -31,4 +31,7 @@ public class GaleriaDisenoServiceImplement implements IGaleriaDisenoService {
     //HU-GADI-# ELIMINA UNA CONEXION ENTRE UN DISENO Y UNA GALERIA CON COMENTARIO SEGUN SU ID
     @Override
     public void deleteGaleriaDiseno(int id) { gdR.deleteById(id); }
+
+    @Override
+    public void deleteByDisenoId(int idDiseno) { gdR.deleteByDisenoId(idDiseno); }
 }
