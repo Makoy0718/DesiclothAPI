@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IPedidoService {
 
-    public void insertPedido(Pedido pe);
+    public Pedido insertPedido(Pedido pe);
     public void updatePedido(Pedido pe);
     public List<Pedido> listPedido();//HU-PED-16
     public void deletePedido(int id);

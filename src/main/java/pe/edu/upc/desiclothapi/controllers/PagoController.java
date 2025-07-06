@@ -26,7 +26,7 @@ public class PagoController {
 
     //Insertar-HU-PAG-17****
     @PostMapping("/insertarPago")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public void insertPago(@RequestBody PagoDTO p) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(p, Pago.class);
@@ -63,7 +63,7 @@ public class PagoController {
 
     //buscar-id-pago
     @GetMapping("/buscarPago/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public PagoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         PagoDTO dto = m.map(paS.buscarPagoPorId(id), PagoDTO.class);
@@ -111,15 +111,32 @@ public class PagoController {
     }
 
     //HU-PAG-58
-    @GetMapping("/totalPagosPorUsuario")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioMontoDTO> obtenerTotales(){
-        return paS.obtenerTotalPagosPorUsuario().stream().map( p -> {
-            String username = (String) p[0];
-            Double total = ((Number) p[1]).doubleValue();
-            return new UsuarioMontoDTO(username, total);
+    //@GetMapping("/totalPagosPorUsuario")
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    //public List<UsuarioMontoDTO> obtenerTotales(){
+      //  return paS.obtenerTotalPagosPorUsuario().stream().map( p -> {
+        //    String username = (String) p[0];
+          //  Double total = ((Number) p[1]).doubleValue();
+            //return new UsuarioMontoDTO(username, total);
 
-        }).collect(Collectors.toList());
+        //}).collect(Collectors.toList());
+    //}
+
+    //Controller para el query de top 5 pago mas altos
+    @GetMapping("/top5pagos")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public List<PagoDTO> obtenerTop5Pagos(){
+        return paS.obtenerTop5Pagos()
+                .stream()
+                .map(p->new ModelMapper().map(p,PagoDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    //controller para el query de ver cuanto monto por usuario
+    @GetMapping("/totalPorUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public List<UsuarioMontoDTO> obtenerTotalPorUsuario(){
+        return paS.obtenerTotalPagosPorUsuario();
     }
 }
 

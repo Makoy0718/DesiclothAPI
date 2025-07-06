@@ -1,31 +1,19 @@
-package pe.edu.upc.desiclothapi.entities;
+package pe.edu.upc.desiclothapi.dtos;
 
-import jakarta.persistence.*;
+import pe.edu.upc.desiclothapi.entities.Pedido;
+import pe.edu.upc.desiclothapi.entities.Producto;
 
-@Entity
-@Table(name = "DetallePedido", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"idProducto","idPedido"})
-})
-public class DetallePedido {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DetallePedidoDTO {
     private int idDetallePedido;
-
-    @ManyToOne
-    @JoinColumn(name = "idProducto", nullable = false)
     private Producto producto;
-
-    @ManyToOne
-    @JoinColumn(name = "idPedido", nullable = false)
     private Pedido pedido;
 
 
-
-    public DetallePedido() {
+    public DetallePedidoDTO() {
     }
 
-    public DetallePedido(int idDetallePedido, Pedido pedido, Producto producto) {
+    public DetallePedidoDTO(int idDetallePedido, Pedido pedido, Producto producto) {
         this.idDetallePedido = idDetallePedido;
         this.pedido = pedido;
         this.producto = producto;

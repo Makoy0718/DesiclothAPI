@@ -21,11 +21,11 @@ public class PedidoController {
 
     //listar -modificar -insertar -eliminarPedido/{id}
     @PostMapping("/insertarPedido")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void insertarPedido(@RequestBody PedidoDTO dto) {
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
+    public Pedido insertarPedido(@RequestBody PedidoDTO dto) {
         ModelMapper m=new ModelMapper();
         Pedido p = m.map(dto, Pedido.class);
-        pS.insertPedido(p);
+        return pS.insertPedido(p); //Devuelve el pedido ya registrado
     }
     //se AGREGO al backend
     @PutMapping("/modificarPedido")
@@ -51,8 +51,11 @@ public class PedidoController {
     {
         pS.deletePedido(id);
     }
+
+
     //Buscar-id-pedido,decia buscarId lo cambie a listarId/buscar por Id=>findById
     @GetMapping("/buscarPedido/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public PedidoDTO buscarPedido(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         PedidoDTO dto = m.map(pS.findById(id),PedidoDTO.class);

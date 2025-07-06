@@ -28,7 +28,14 @@ public interface IPagoService {
     public List<Pago> buscarPagosPorUsuarioYFecha (int idUser, LocalDate fecha);
 
     //HU-PAG-58
-    List<Object[]> obtenerTotalPagosPorUsuario ();
+    //List<Object[]> obtenerTotalPagosPorUsuario ();
+
+    //query de top 5 pagos mas altos
+    List<Pago> obtenerTop5Pagos();
+
+    //Query para ver cuando de monto hay por usuario
+    List<UsuarioMontoDTO> obtenerTotalPagosPorUsuario();
+
 
 
 

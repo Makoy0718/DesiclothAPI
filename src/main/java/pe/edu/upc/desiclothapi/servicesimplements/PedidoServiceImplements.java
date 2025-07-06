@@ -16,8 +16,8 @@ public class PedidoServiceImplements implements IPedidoService {
 
     //HU-PED-Insertar Diseño
     @Override
-    public void insertPedido(Pedido pe) {
-        pR.save(pe);
+    public Pedido insertPedido(Pedido pe) {
+        return pR.save(pe);  //devuelve el pedido guardado (con ID autogenerado)
     }
 
     //se agrego de modificar(actualizar Pedido
