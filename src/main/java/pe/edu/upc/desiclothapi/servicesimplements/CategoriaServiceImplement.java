@@ -45,7 +45,7 @@ public class CategoriaServiceImplement implements ICategoriaService {
     public List<Categoria> buscarPorNombreCategoria(String c) { return cR.buscarCategoria(c); }
     //HU-CAT-54 CUENTA LA CANTIDAD DE DISENOS POR CADA CATEGORIA
     @Override
-    public List<ConteoDisenosPorCategoriaDTO> contarDisenosPorCategoria() {
+    public List<Object[]> contarDisenosPorCategoria() {
         return cR.contarDisenosPorCategoria();
     }
 

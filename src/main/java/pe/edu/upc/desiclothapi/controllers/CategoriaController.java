@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
+import pe.edu.upc.desiclothapi.dtos.ConteoDisenoCategoriaOrigenDTO;
 import pe.edu.upc.desiclothapi.dtos.ConteoDisenosPorCategoriaDTO;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.ICategoriaService;
@@ -78,10 +79,15 @@ public class CategoriaController {
     //HU-CAT-54
     @GetMapping("/contarDisenos")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<ConteoDisenosPorCategoriaDTO> obtenerConteoDisenos() {
-        return cS.contarDisenosPorCategoria();
+    public List<ConteoDisenosPorCategoriaDTO> contarDisenosPorCategoria() {
+        List<Object[]> datos = cS.contarDisenosPorCategoria();
+        return datos.stream().map(fila -> {
+            int idCategoria = ((Number) fila[0]).intValue();
+            String nombreCategoria = (String) fila[1];
+            long cantidad = ((Number) fila[2]).longValue();
+            return new ConteoDisenosPorCategoriaDTO(idCategoria, nombreCategoria, cantidad);
+        }).collect(Collectors.toList());
     }
-
     //HU-CAT-35
     @GetMapping("/buscarCategoria/{id}")
     public CategoriaDTO listarId(@PathVariable("id") int id) {

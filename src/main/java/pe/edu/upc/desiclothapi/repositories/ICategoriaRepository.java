@@ -21,7 +21,7 @@ public interface ICategoriaRepository extends JpaRepository<Categoria, Integer> 
     public List<Categoria> buscarCategoria(@Param("nombreCat") String nombreCat);
     //HU-CAT-54 selecciona las categorias(id) de los disenos en Disenos y las cuenta
     //--Separandolas por cantidad y nombre de la categoria
-    @Query("SELECT d.categoria.nombreCategoria, COUNT(d.idDiseno) " +
-            "FROM Diseno d GROUP BY d.categoria.nombreCategoria")
-    List<ConteoDisenosPorCategoriaDTO> contarDisenosPorCategoria();
+    @Query("SELECT d.categoria.idCategoria, d.categoria.nombreCategoria, COUNT(d.idDiseno) " +
+            "FROM Diseno d GROUP BY d.categoria.idCategoria, d.categoria.nombreCategoria")
+    List<Object[]> contarDisenosPorCategoria();
 }
