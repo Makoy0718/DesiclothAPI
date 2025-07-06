@@ -20,11 +20,11 @@ public interface IGaleriaRepository extends JpaRepository<Galeria, Integer> {
     Double findAverageRatingByGaleriaId(@Param("idGaleria") int idGaleria);
 
     //HU-GAL-54
-    @Query(value = "select count(distinct gd.idGaleria) as Total Galerias\n" +
+    @Query(value = "select count(distinct gd.id_galeria) as Total_galerias\n" +
             " from diseno d\n" +
-            " join galeriaDiseno gd on d.id = gd.idDiseno\n" +
-            " where d.tipoOrigenDiseno = 'IA'", nativeQuery = true)
-    List<String[]> getTotalGaleriasConIA();
+            " join galeria_diseno gd on d.id_diseno = gd.id_diseno\n" +
+            " where d.tipo_origen_diseno = 'IA'", nativeQuery = true)
+    int getTotalGaleriasConIA();
 
     //Listar Galerias en base a username
     @Query("select g from Galeria g where g.users.username = :nombre")

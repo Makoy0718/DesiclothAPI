@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
-import pe.edu.upc.desiclothapi.dtos.GaleriaDTO;
-import pe.edu.upc.desiclothapi.dtos.PromedioRatingDTO;
-import pe.edu.upc.desiclothapi.dtos.TotalGaleriasConIADTO;
+import pe.edu.upc.desiclothapi.dtos.*;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.entities.Galeria;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IGaleriaService;
@@ -107,15 +104,20 @@ public class GaleriaController {
     //HU-GAL-54
     @GetMapping("/ia")
     @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
-    public List<TotalGaleriasConIADTO> obtenerGaleriasConIA() {
-        List<TotalGaleriasConIADTO> dtoLista = new ArrayList<>();
-        List<String[]> filaLista=gS.getTotalGaleriasConIA();
-        for(String[] columna:filaLista) {
-            TotalGaleriasConIADTO dto = new TotalGaleriasConIADTO();
-            dto.setTotalGalerias(columna[0]);
-            dtoLista.add(dto);
-        }
-        return dtoLista;
+    public TotalGaleriasConIADTO obtenerGaleriasConIA() {
+        int total =gS.getTotalGaleriasConIA();
+        TotalGaleriasConIADTO dto = new TotalGaleriasConIADTO();
+        dto.setTotalGalerias(total);
+        return dto;
+    }
+
+    @GetMapping("/total")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public TotalGaleriasDTO obtenerTotalGalerias() {
+        int total =gS.getTotalGalerias();
+        TotalGaleriasDTO dto = new TotalGaleriasDTO();
+        dto.setTotal(total);
+        return dto;
     }
 
     @GetMapping("/buscarPorNombreUsuario")

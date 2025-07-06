@@ -1,13 +1,13 @@
 package pe.edu.upc.desiclothapi.dtos;
 
 public class TotalGaleriasConIADTO {
-    private String totalGalerias;
+    private int totalGalerias;
 
-    public String getTotalGalerias() {
+    public int getTotalGalerias() {
         return totalGalerias;
     }
 
-    public void setTotalGalerias(String totalGalerias) {
+    public void setTotalGalerias(int totalGalerias) {
         this.totalGalerias = totalGalerias;
     }
 }
