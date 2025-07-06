@@ -35,6 +35,12 @@ public interface IDisenoRepository extends JpaRepository<Diseno, Integer> {
     //--coincidan con el nombre del genero que se digito
     @Query("SELECT d FROM Diseno d WHERE d.genero.nombreGenero = :nombreGenero")
     public List<Diseno> buscarPorNombreGenero(@Param("nombreGenero") String nombreGenero);
+
+    @Query(value = "SELECT g.nombre_genero, COUNT(*) AS cantidad \n" +
+            " FROM diseno d \n" +
+            " JOIN genero g ON d.id_genero = g.id_genero \n" +
+            " GROUP BY g.nombre_genero", nativeQuery = true)
+    public List<Object[]> buscarDisenoporGenero();
     //HU-DIS-26 Selecciona todos los tipoOrigenDiseno que existan en Diseno
     //--saca el promedio de precioDiseno segun tipoOrigenDiseno
     //--y los agrupa por tipoOrigenDiseno

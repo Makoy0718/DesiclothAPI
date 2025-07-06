@@ -15,7 +15,8 @@ public interface IDisenoService {
     public Diseno findById(int id); //HU-DIS-24
     List<Diseno> findByGeneroId(int idGenero); //HU-DIS-55
     List<Diseno> findByCategoriaId(int idCategoria); //HU-DIS-56
-    List<Diseno> findByGeneroNombre(String n); //HU-GEN-39
+    List<Diseno> findByGeneroNombre(String n);
+    List<Object[]> countDisenosPorGenero();//HU-GEN-39
     List<Object[]> comparePreciosByOrigen(); //HU-DIS-26
     List<Object[]> countDisenosByCategoriaYOrigen(); //HU-DIS-27
     List<Diseno> findByUserId(int idUser);

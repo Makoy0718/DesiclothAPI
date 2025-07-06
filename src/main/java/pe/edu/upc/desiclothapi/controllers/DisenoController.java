@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.desiclothapi.dtos.CategoriaDTO;
-import pe.edu.upc.desiclothapi.dtos.ComparacionPreciosDisenoDTO;
-import pe.edu.upc.desiclothapi.dtos.ConteoDisenoCategoriaOrigenDTO;
-import pe.edu.upc.desiclothapi.dtos.DisenoDTO;
+import pe.edu.upc.desiclothapi.dtos.*;
 import pe.edu.upc.desiclothapi.entities.Categoria;
 import pe.edu.upc.desiclothapi.entities.Diseno;
 import pe.edu.upc.desiclothapi.servicesinterfaces.IDisenoService;
@@ -149,6 +146,18 @@ public class DisenoController {
             return m.map(w, DisenoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/conteoDisenosPorCategoriaYOrigenDiseno")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<ConteoDisenoCategoriaOrigenDTO> conteoDisenosPorCategoriaYOrigen() {
+        return dS.countDisenosByCategoriaYOrigen().stream().map(fila -> {
+            String categoria = (String) fila[0];
+            String origen = (String) fila[1];
+            Long cantidad = (Long) fila[2];
+            return new ConteoDisenoCategoriaOrigenDTO(categoria, origen, cantidad);
+        }).collect(Collectors.toList());
+    }
+
     //HU-DIS-26
     @GetMapping("/compararPreciosOrigenDiseno")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -160,14 +169,13 @@ public class DisenoController {
         }).collect(Collectors.toList());
     }
     //HU-DIS-27
-    @GetMapping("/conteoDisenosPorCategoriaYOrigenDiseno")
+    @GetMapping("/conteoDisenosPorGenero")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<ConteoDisenoCategoriaOrigenDTO> conteoDisenosPorCategoriaYOrigen() {
-        return dS.countDisenosByCategoriaYOrigen().stream().map(fila -> {
-            String categoria = (String) fila[0];
-            String origen = (String) fila[1];
-            Long cantidad = (Long) fila[2];
-            return new ConteoDisenoCategoriaOrigenDTO(categoria, origen, cantidad);
+    public List<ConteoDisenoGeneroDTO> conteoDisenosPorGenero() {
+        return dS.countDisenosPorGenero().stream().map(fila -> {
+            String nombreGenero = (String) fila[0];
+            Long cantidadDisenos = (Long) fila[1];
+            return new ConteoDisenoGeneroDTO(nombreGenero,cantidadDisenos);
         }).collect(Collectors.toList());
     }
 
