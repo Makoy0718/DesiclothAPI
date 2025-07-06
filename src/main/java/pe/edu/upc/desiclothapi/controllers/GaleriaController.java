@@ -31,7 +31,7 @@ public class GaleriaController {
 
     //HU-GAL--41
     @PostMapping("/insertarGaleria")
-    @PreAuthorize("hasAuthority('ADMIN','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public void insertarGaleria(@RequestBody GaleriaDTO dto) {
         ModelMapper m = new ModelMapper();
         Galeria g = m.map(dto, Galeria.class);
@@ -39,7 +39,7 @@ public class GaleriaController {
     }
 
     @PutMapping("/modificarGaleria")
-    @PreAuthorize("hasAuthority('ADMIN','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public void modificarGaleria(@RequestBody GaleriaDTO dto) {
         ModelMapper m = new ModelMapper();
         Galeria g = m.map(dto, Galeria.class);
@@ -47,7 +47,7 @@ public class GaleriaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','CLIENTE')")
     public void eliminarGaleria(@PathVariable("id") int id) { gS.deleteGaleria(id); }
 
 
