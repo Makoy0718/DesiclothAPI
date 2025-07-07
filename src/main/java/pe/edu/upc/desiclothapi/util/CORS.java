@@ -55,7 +55,20 @@ public class CORS implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        String origin = request.getHeader("Origin");
+
+        // Lista de orígenes permitidos, agrega tus dominios frontend aquí
+        if ("http://localhost:4200".equals(origin) || "https://tu-frontend.netlify.app".equals(origin)) {
+            response.setHeader("Access-Control-Allow-Origin", origin);
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+        } else {
+            // Si quieres bloquear otros orígenes, descomenta esta línea:
+            // response.sendError(HttpServletResponse.SC_FORBIDDEN, "Origin not allowed");
+            // return;
+            // O permite por defecto sin credentials:
+            response.setHeader("Access-Control-Allow-Origin", origin != null ? origin : "");
+        }
+
         response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, POST, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers",
@@ -66,7 +79,6 @@ public class CORS implements Filter {
         } else {
             chain.doFilter(req, res);
         }
-        // chain.doFilter(req, res);
     }
 
     @Override
